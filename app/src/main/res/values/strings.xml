@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FoodbreakInc</string>
+    <string name="app_logo_description">FoodBreak</string>
+
+    <!-- Auth Module -->
+    <string name="auth_log_in">Log In</string>
+    <string name="auth_prompt_username">Username</string>
+    <string name="auth_prompt_password">Password</string>
+    <string name="auth_btn_login">Log in</string>
+</resources>
