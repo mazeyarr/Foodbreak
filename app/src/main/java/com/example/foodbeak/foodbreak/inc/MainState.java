@@ -1,7 +1,5 @@
 package com.example.foodbeak.foodbreak.inc;
 
-import android.util.Log;
-
 import com.example.foodbeak.foodbreak.inc.modules.CoreModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.AuthModule;
 import com.example.foodbeak.foodbreak.inc.types.ModuleType;
@@ -20,7 +18,6 @@ public class MainState {
 
     private void initializeModules() {
         for (ModuleType moduleType : ModuleType.values()) {
-            Log.d("STATE", moduleType.toString());
             switch (moduleType) {
                 case AUTH:
                     addModule(moduleType, new AuthModule());
