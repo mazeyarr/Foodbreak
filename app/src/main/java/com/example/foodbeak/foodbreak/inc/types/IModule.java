@@ -3,8 +3,10 @@ package com.example.foodbeak.foodbreak.inc.types;
 import android.content.Context;
 import android.content.Intent;
 
-public interface IModule<ModuleActivityType extends Enum> {
-    Intent getActivity(ModuleActivityType moduleActivityType, Context context);
+import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.UndefinedActivityException;
 
-    int getLayout(ModuleActivityType moduleActivityType);
+public interface IModule<AT extends Enum> {
+    Intent getActivity(AT activityType, Context context) throws UndefinedActivityException;
+
+    int getLayout(AT activityType) throws UndefinedActivityException;
 }

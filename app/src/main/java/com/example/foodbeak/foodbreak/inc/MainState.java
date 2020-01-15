@@ -1,7 +1,9 @@
 package com.example.foodbeak.foodbreak.inc;
 
+import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.ModulesNotInitializedException;
 import com.example.foodbeak.foodbreak.inc.modules.CoreModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.AuthModule;
+import com.example.foodbeak.foodbreak.inc.modules.shared.SharedModule;
 import com.example.foodbeak.foodbreak.inc.types.ModuleType;
 
 import java.util.HashMap;
@@ -10,7 +12,7 @@ import java.util.Map;
 public class MainState {
     private static Map<ModuleType, Object> modules;
 
-    MainState() {
+    public MainState() {
         MainState.modules = new HashMap<>();
 
         initializeModules();
@@ -21,6 +23,10 @@ public class MainState {
             switch (moduleType) {
                 case AUTH:
                     addModule(moduleType, new AuthModule());
+                    break;
+                case SHARED:
+                    addModule(moduleType, new SharedModule());
+                    break;
                 case USER:
                 default:
                     // TODO: Exception
@@ -36,9 +42,9 @@ public class MainState {
         return modules;
     }
 
-    static  <T> T getModule(ModuleType moduleType, Class<T> module) {
+    public static  <T> T getModule(ModuleType moduleType, Class<T> module) throws ModulesNotInitializedException {
         if (getModules().isEmpty()) {
-            // TODO: exception
+            throw new ModulesNotInitializedException();
         }
 
         return module.cast(getModules().get(moduleType));

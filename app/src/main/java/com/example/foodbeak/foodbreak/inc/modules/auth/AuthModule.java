@@ -4,16 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.UndefinedActivityException;
 import com.example.foodbeak.foodbreak.inc.modules.CoreModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.activities.LoginActivity;
 import com.example.foodbeak.foodbreak.inc.modules.auth.activities.RegisterActivity;
-import com.example.foodbeak.foodbreak.inc.modules.auth.types.AuthAcitvities;
+import com.example.foodbeak.foodbreak.inc.modules.auth.types.AuthActivityTypes;
 import com.example.foodbeak.foodbreak.inc.types.IModule;
 
-public class AuthModule extends CoreModule implements IModule<AuthAcitvities> {
+public class AuthModule extends CoreModule implements IModule<AuthActivityTypes> {
 
     @Override
-    public Intent getActivity(AuthAcitvities authActivityType, Context context) {
+    public Intent getActivity(AuthActivityTypes authActivityType, Context context) throws UndefinedActivityException {
         switch (authActivityType) {
             case LOGIN:
                 return new Intent(context, LoginActivity.class);
@@ -22,14 +23,13 @@ public class AuthModule extends CoreModule implements IModule<AuthAcitvities> {
                 return new Intent(context, RegisterActivity.class);
 
             default:
-                // TODO: Exception
-                return null;
+                throw new UndefinedActivityException();
         }
     }
 
     @Override
-    public int getLayout(AuthAcitvities authAcitvities) {
-        switch (authAcitvities) {
+    public int getLayout(AuthActivityTypes authActivityTypes) {
+        switch (authActivityTypes) {
             case LOGIN:
                 return R.layout.activity_login;
             case REGISTER:
