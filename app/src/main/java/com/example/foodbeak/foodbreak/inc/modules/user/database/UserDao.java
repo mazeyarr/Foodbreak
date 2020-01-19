@@ -13,13 +13,16 @@ import java.util.List;
 @Dao
 public interface UserDao {
     @Insert
-    void insertNewUser(UserEntity... userEntities);
+    void insertNewUser(UserEntity userEntity);
 
     @Delete
     void deleteUser(UserEntity userEntity);
 
-    @Query("SELECT * FROM user_table WHERE user_id = :userId")
-    LiveData<UserEntity> loadUserById(Long userId);
+    @Query("DELETE FROM user_table")
+    void deleteUserAll();
+
+//    @Query("SELECT * FROM user_table WHERE user_id = :userId")
+//    LiveData<UserEntity> loadUserById(Long userId);
 
     @Query("SELECT * FROM user_table ORDER BY email ASC")
     LiveData<List<UserEntity>> loadAllUsers();

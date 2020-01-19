@@ -16,13 +16,13 @@ public class DataViewModel extends AndroidViewModel {
 
     public DataViewModel(Application application) {
         super(application);
+
         mDataRepository = new DataRepository(application);
         mAllUsers = mDataRepository.getAllUsers();
     }
 
     // Users
-
-    LiveData<List<UserEntity>> getAllUsers() {
+    public LiveData<List<UserEntity>> getAllUsers() {
         return mAllUsers;
     }
 

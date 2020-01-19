@@ -21,7 +21,8 @@
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLayoutUsername"
@@ -33,6 +34,9 @@
         android:textAlignment="textStart"
         android:textColorHint="@color/textPrimary"
         android:theme="@style/TextLabel"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
@@ -41,7 +45,9 @@
             style="@style/editTextDefaults"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:inputType="text"
             android:imeOptions="actionNext"
+            android:maxLines="1"
             android:textColor="@color/textPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,6 +61,9 @@
         android:textAlignment="textStart"
         android:textColorHint="@color/textPrimary"
         android:theme="@style/TextLabel"
+        android:inputType="text"
+        android:imeOptions="actionGo"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="@+id/etLayoutUsername"
         app:layout_constraintStart_toStartOf="@+id/etLayoutUsername"
         app:layout_constraintTop_toBottomOf="@+id/etLayoutUsername">
@@ -64,7 +73,9 @@
             style="@style/editTextDefaults"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:imeOptions="actionGo"
+            android:maxLines="1"
             android:textColor="@color/textPrimary" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +91,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
+        app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters"
+    />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
@@ -98,7 +110,22 @@
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:rippleColor="#ffffff"
-        app:strokeColor="#ffffff" />
+        app:strokeColor="#ffffff"
+    />
+
+    <ImageView
+        android:id="@+id/foo"
+        android:layout_width="254dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/app_logo_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters"
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,12 +16,12 @@ public class DataRepository {
 
     public DataRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
+
         mUserDao = db.userDao();
         mAllUsers = mUserDao.loadAllUsers();
     }
 
     // Users
-
     public LiveData<List<UserEntity>> getAllUsers() {
         return mAllUsers;
     }

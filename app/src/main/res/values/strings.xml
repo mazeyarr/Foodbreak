@@ -3,8 +3,18 @@
     <string name="app_logo_description">FoodBreak</string>
 
     <!-- Auth Module -->
+    <string name="auth_register_slogan">Make your account to make use of Foodbreak.</string>
+
+    <string name="auth_register">Account</string>
     <string name="auth_log_in">Log In</string>
+
+    <string name="auth_prompt_email">Email</string>
+    <string name="auth_prompt_fullname">Full name</string>
+    <string name="auth_prompt_brithdate">Date of Birth</string>
     <string name="auth_prompt_username">Username</string>
     <string name="auth_prompt_password">Password</string>
-    <string name="auth_btn_login">Log in</string>
+    <string name="auth_prompt_password_confirm">Confirm password</string>
+
+    <string name="auth_btn_register">REGISTER</string>
+    <string name="auth_btn_login">LOGIN</string>
 </resources>
