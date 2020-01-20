@@ -1,200 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    android:background="@color/mainBackgroundColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainBackgroundColor"
-    tools:context=".modules.auth.activities.RegisterActivity">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="257dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat"
-        android:includeFontPadding="false"
-        android:text="@string/auth_register"
-        android:textAlignment="textStart"
-        android:textColor="@color/titleText"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/subtitle"
-        android:layout_width="358dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/auth_register_slogan"
-        android:textColor="@color/titleText"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etLayoutFullname"
-        android:layout_width="350dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/auth_prompt_fullname"
-        android:labelFor="@+id/etFullname"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/textPrimary"
-        android:theme="@style/TextLabel"
-        android:inputType="text"
-        android:imeOptions="actionNext"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="@+id/subtitle"
-        app:layout_constraintTop_toBottomOf="@+id/subtitle">
+        android:background="@color/mainBackgroundColor"
+        tools:context=".modules.auth.activities.RegisterActivity">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etFullname"
-            style="@style/editTextDefaults"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
+        <TextView
+            android:id="@+id/lblFoodTitle"
+            android:layout_width="257dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat"
+            android:includeFontPadding="false"
+            android:text="@string/auth_register"
+            android:textAlignment="textStart"
+            android:textColor="@color/titleText"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="358dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/auth_register_slogan"
+            android:textColor="@color/titleText"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lblFoodTitle"
+            app:layout_constraintTop_toBottomOf="@+id/lblFoodTitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etLayoutFullname"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/auth_prompt_fullname"
             android:imeOptions="actionNext"
-            android:maxLines="1"
-            android:textColor="@color/textPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etLayoutEmail"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="@string/auth_prompt_email"
-        android:labelFor="@+id/etEmail"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/textPrimary"
-        android:theme="@style/TextLabel"
-        android:inputType="text"
-        android:imeOptions="actionNext"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="@+id/etLayoutFullname"
-        app:layout_constraintTop_toBottomOf="@+id/etLayoutFullname">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
-            style="@style/editTextDefaults"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:inputType="text"
+            android:labelFor="@+id/etFullname"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColorHint="@color/textPrimary"
+            android:theme="@style/TextLabel"
+            app:layout_constraintStart_toStartOf="@+id/subtitle"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFullname"
+                style="@style/editTextDefaults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/textPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etLayoutEmail"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/auth_prompt_email"
             android:imeOptions="actionNext"
-            android:maxLines="1"
-            android:textColor="@color/textPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etLayoutDateOfBirth"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="@string/auth_prompt_brithdate"
-        android:labelFor="@+id/etEmail"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/textPrimary"
-        android:theme="@style/TextLabel"
-        android:inputType="text"
-        android:imeOptions="actionNext"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="@+id/etLayoutEmail"
-        app:layout_constraintTop_toBottomOf="@+id/etLayoutEmail">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDateOfBirth"
-            style="@style/editTextDefaults"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:inputType="text"
+            android:labelFor="@+id/etEmail"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColorHint="@color/textPrimary"
+            android:theme="@style/TextLabel"
+            app:layout_constraintStart_toStartOf="@+id/etLayoutFullname"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutFullname">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                style="@style/editTextDefaults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/textPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etLayoutDateOfBirth"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/auth_prompt_brithdate"
             android:imeOptions="actionNext"
-            android:maxLines="1"
-            android:textColor="@color/textPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etLayoutPassword"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="@string/auth_prompt_password"
-        android:labelFor="@+id/etPassword"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/textPrimary"
-        android:theme="@style/TextLabel"
-        android:inputType="text"
-        android:imeOptions="actionNext"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="@+id/etLayoutDateOfBirth"
-        app:layout_constraintTop_toBottomOf="@+id/etLayoutDateOfBirth">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
-            style="@style/editTextDefaults"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:inputType="text"
+            android:labelFor="@+id/etEmail"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColorHint="@color/textPrimary"
+            android:theme="@style/TextLabel"
+            app:layout_constraintStart_toStartOf="@+id/etLayoutEmail"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDateOfBirth"
+                style="@style/editTextDefaults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/textPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etLayoutPassword"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/auth_prompt_password"
             android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:labelFor="@+id/etPassword"
             android:maxLines="1"
-            android:textColor="@color/textPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textAlignment="textStart"
+            android:textColorHint="@color/textPrimary"
+            android:theme="@style/TextLabel"
+            app:layout_constraintStart_toStartOf="@+id/etLayoutDateOfBirth"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutDateOfBirth">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etLayoutPasswordConfirm"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="@string/auth_prompt_password_confirm"
-        android:labelFor="@+id/etPasswordConfirm"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/textPrimary"
-        android:theme="@style/TextLabel"
-        android:inputType="text"
-        android:imeOptions="actionSend"
-        android:maxLines="1"
-        app:layout_constraintStart_toStartOf="@+id/etLayoutPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etLayoutPassword">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                style="@style/editTextDefaults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/textPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPasswordConfirm"
-            style="@style/editTextDefaults"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etLayoutPasswordConfirm"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/auth_prompt_password_confirm"
             android:imeOptions="actionSend"
+            android:inputType="textPassword"
+            android:labelFor="@+id/etPasswordConfirm"
             android:maxLines="1"
-            android:textColor="@color/textPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textAlignment="textStart"
+            android:textColorHint="@color/textPrimary"
+            android:theme="@style/TextLabel"
+            app:layout_constraintStart_toStartOf="@+id/etLayoutPassword"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutPassword">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRegister"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="140dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/auth_btn_register"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/etLayoutPasswordConfirm"
-        app:layout_constraintTop_toBottomOf="@+id/etLayoutPasswordConfirm"
-        app:rippleColor="#ffffff"
-        app:strokeColor="#ffffff" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordConfirm"
+                style="@style/editTextDefaults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionSend"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/textPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/footerBrand"
-        android:layout_width="149dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/app_logo_description"
-        app:layout_constraintEnd_toEndOf="@+id/etLayoutPasswordConfirm"
-        app:layout_constraintTop_toBottomOf="@+id/etLayoutPasswordConfirm"
-        app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegister"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="140dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/auth_btn_register"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/etLayoutPasswordConfirm"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutPasswordConfirm"
+            app:rippleColor="#ffffff"
+            app:strokeColor="#ffffff" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/footerBrand"
+            android:layout_width="149dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_logo_description"
+            app:layout_constraintEnd_toEndOf="@+id/etLayoutPasswordConfirm"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutPasswordConfirm"
+            app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

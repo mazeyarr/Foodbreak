@@ -3,30 +3,30 @@ package com.example.foodbeak.foodbreak.inc.database;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 
-import com.example.foodbeak.foodbreak.inc.modules.user.entities.User.UserEntity;
-
-import java.util.List;
+import com.example.foodbeak.foodbreak.inc.modules.user.entities.User;
+import com.google.firebase.firestore.DocumentReference;
 
 public class DataViewModel extends AndroidViewModel {
+    private User mAuthUser;
     private DataRepository mDataRepository;
-
-    private LiveData<List<UserEntity>> mAllUsers;
 
     public DataViewModel(Application application) {
         super(application);
 
         mDataRepository = new DataRepository(application);
-        mAllUsers = mDataRepository.getAllUsers();
     }
 
     // Users
-    public LiveData<List<UserEntity>> getAllUsers() {
-        return mAllUsers;
+    public DocumentReference createUser(User user) throws Exception {
+       return mDataRepository.createUser(user);
     }
 
-    public void insertUser(UserEntity user) {
-        mDataRepository.insertUser(user);
+    public void setAuthUser(User user) {
+        this.mAuthUser = user;
+    }
+
+    public User getAuthUser() {
+        return this.mAuthUser;
     }
 }

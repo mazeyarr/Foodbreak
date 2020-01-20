@@ -10,6 +10,11 @@
     <color name="editTextLabelColor">#FFFFFF</color>
     <color name="editTextLineColor">#FFFFFF</color>
 
+
+    <color name="editTextErrorColor">#FF5252</color>
+    <color name="editTextErrorLabelColor">#FF5252</color>
+    <color name="editTextErrorLineColor">#FF5252</color>
+
     <color name="mainBackgroundColor">#000000</color>
     <color name="titleText">#FFFFFF</color>
     <color name="textPrimary">#FFFFFF</color>

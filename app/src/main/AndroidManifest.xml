@@ -4,9 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/foodbreak_logo_trans_bg_white_letters"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
         <activity android:name=".modules.shared.activities.SplashActivity">
@@ -21,6 +20,8 @@
         <activity android:name=".modules.auth.activities.LoginActivity"></activity>
         <activity android:name=".modules.auth.activities.RegisterActivity"></activity>
 
+        <!-- Product Module -->
+        <activity android:name=".modules.product.activities.ProductActivity"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

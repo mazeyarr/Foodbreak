@@ -10,14 +10,15 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.foodbeak.foodbreak.inc.modules.user.database.UserDao;
-import com.example.foodbeak.foodbreak.inc.modules.user.entities.User.UserEntity;
+import com.example.foodbeak.foodbreak.inc.modules.user.entities.User;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(
         entities = {
-                UserEntity.class
+            User.class
         },
         version = 1,
         exportSchema = false
@@ -52,32 +53,15 @@ public abstract class AppDatabase extends RoomDatabase {
         return DATABASE_INSTANCE;
     }
 
+    public static FirebaseFirestore getFirestore() {
+        return FirebaseFirestore.getInstance();
+    }
+
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
             Log.d(TAG, "onCreate: Callback has been called");
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-                UserDao dao = DATABASE_INSTANCE.userDao();
-                dao.deleteUserAll();
-
-                UserEntity user = new UserEntity(
-                        1L,
-                        "Mazeyar",
-                        "Rezaei",
-                        "mazeyarr@gmail.com",
-                        "01-09-1997",
-                        "12345"
-
-                );
-
-                dao.insertNewUser(user);
-            });
         }
     };
 

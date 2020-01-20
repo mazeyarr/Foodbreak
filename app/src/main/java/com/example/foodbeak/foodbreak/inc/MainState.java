@@ -1,21 +1,38 @@
 package com.example.foodbeak.foodbreak.inc;
 
+import android.util.Log;
+
+import com.example.foodbeak.foodbreak.inc.modules.product.ProductModule;
 import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.ModulesNotInitializedException;
 import com.example.foodbeak.foodbreak.inc.modules.CoreModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.AuthModule;
 import com.example.foodbeak.foodbreak.inc.modules.shared.SharedModule;
 import com.example.foodbeak.foodbreak.inc.types.ModuleType;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainState {
+    private static final String TAG = "MainState";
+
     private static Map<ModuleType, Object> modules;
 
     public MainState() {
         MainState.modules = new HashMap<>();
 
+//        removeDefaultUser();
         initializeModules();
+    }
+
+    private void removeDefaultUser() {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                "mazeyarr@gmail.com",
+                "mazeyar123"
+        ).addOnCompleteListener(task -> {
+            FirebaseAuth.getInstance().getCurrentUser().delete();
+            FirebaseAuth.getInstance().signOut();
+        });
     }
 
     private void initializeModules() {
@@ -23,6 +40,9 @@ public class MainState {
             switch (moduleType) {
                 case AUTH:
                     addModule(moduleType, new AuthModule());
+                    break;
+                case PRODUCT:
+                    addModule(moduleType, new ProductModule());
                     break;
                 case SHARED:
                     addModule(moduleType, new SharedModule());
@@ -42,9 +62,13 @@ public class MainState {
         return modules;
     }
 
-    public static  <T> T getModule(ModuleType moduleType, Class<T> module) throws ModulesNotInitializedException {
-        if (getModules().isEmpty()) {
-            throw new ModulesNotInitializedException();
+    public static <T> T getModule(ModuleType moduleType, Class<T> module) {
+        try {
+            if (getModules().isEmpty()) {
+                throw new ModulesNotInitializedException();
+            }
+        } catch (ModulesNotInitializedException e) {
+            Log.d(TAG, "getModule: Modules are not initialized yet!");
         }
 
         return module.cast(getModules().get(moduleType));

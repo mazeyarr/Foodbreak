@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextLabel" parent="TextAppearance.AppCompat">
+    <style name="TextLabel" parent="Widget.Design.TextInputLayout">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/editTextColor</item>
         <item name="android:textSize">20sp</item>
@@ -16,6 +16,16 @@
         <item name="colorAccent">@color/editTextLabelColor</item>
         <item name="colorControlNormal">@color/editTextLabelColor</item>
         <item name="colorControlActivated">@color/editTextLineColor</item>
+    </style>
+
+    <style name="TextLabelError" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/editTextErrorColor</item>
+        <item name="android:textSize">20sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/editTextErrorLabelColor</item>
+        <item name="colorControlNormal">@color/editTextErrorLabelColor</item>
+        <item name="colorControlActivated">@color/editTextErrorLineColor</item>
     </style>
 
     <style name="editTextDefaults">

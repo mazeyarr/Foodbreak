@@ -5,12 +5,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.foodbeak.foodbreak.inc.MainState;
-import com.example.foodbeak.foodbreak.inc.database.DataViewModel;
-import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.ModulesNotInitializedException;
-import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.UndefinedActivityException;
 import com.example.foodbeak.foodbreak.inc.modules.auth.AuthModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.types.AuthActivityTypes;
 import com.example.foodbeak.foodbreak.inc.modules.shared.SharedModule;
@@ -24,25 +20,18 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";
 
     private static final int SPLASH_TIME_MILLIS = 3000;
-    private DataViewModel mDataViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         new MainState();
+        setContentView(MainState
+                .getModule(ModuleType.SHARED, SharedModule.class)
+                .getLayout(SharedActivities.SPLASH)
+        );
 
-        try {
-            setContentView(MainState
-                    .getModule(ModuleType.SHARED, SharedModule.class)
-                    .getLayout(SharedActivities.SPLASH)
-            );
-            startSplashScreen();
-        } catch (ModulesNotInitializedException e) {
-            // TODO: do something if modules have not been initialized
-        } catch (UndefinedActivityException e) {
-            // TODO: do something if wrong activity is called
-        }
+        startSplashScreen();
     }
 
     private void startSplashScreen() {
@@ -58,17 +47,11 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startLoginActivity() {
-        try {
-            Log.d(TAG, "startLoginActivity: " + MainState.getModule(ModuleType.AUTH, AuthModule.class));
+        Log.d(TAG, "startLoginActivity: " + MainState.getModule(ModuleType.AUTH, AuthModule.class));
 
-            startActivity(MainState
-                    .getModule(ModuleType.AUTH, AuthModule.class)
-                    .getActivity(AuthActivityTypes.REGISTER, this)
-            );
-        } catch (ModulesNotInitializedException e) {
-            // TODO: do something if modules have not been initialized
-        } catch (UndefinedActivityException e) {
-            // TODO: do something if wrong activity is called
-        }
+        startActivity(MainState
+                .getModule(ModuleType.AUTH, AuthModule.class)
+                .getActivity(AuthActivityTypes.LOGIN, this)
+        );
     }
 }

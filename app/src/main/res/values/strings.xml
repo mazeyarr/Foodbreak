@@ -17,4 +17,16 @@
 
     <string name="auth_btn_register">REGISTER</string>
     <string name="auth_btn_login">LOGIN</string>
+    <string name="auth_btn_login_no_account">GEEN ACCOUNT?</string>
+
+
+    <!-- Product Module -->
+    <string name="product_lbl_food_menu">FOOD</string>
+    <string name="product_lbl_drink_menu">DRINKS</string>
+    <string name="product_show_title">Menu</string>
+
+    <string name="product_default_price">€ 0.00</string>
+    <string name="product_default_title">Product Title</string>
+    <string name="product_btn_add_to_cart">+</string>
+    <string name="product_btn_remove_from_cart">-</string>
 </resources>
