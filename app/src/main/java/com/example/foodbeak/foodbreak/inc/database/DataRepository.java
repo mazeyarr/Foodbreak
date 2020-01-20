@@ -2,9 +2,8 @@ package com.example.foodbeak.foodbreak.inc.database;
 
 import android.app.Application;
 
-import com.example.foodbeak.foodbreak.inc.modules.user.database.UserDao;
 import com.example.foodbeak.foodbreak.inc.modules.user.entities.User;
-import com.example.foodbeak.foodbreak.inc.modules.user.services.UserService;
+import com.example.foodbeak.foodbreak.inc.modules.user.services.AccountService;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -12,12 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 class DataRepository {
 
-    private UserDao mUserDao;
-
     DataRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
-
-        mUserDao = db.userDao();
     }
 
 
@@ -27,7 +22,7 @@ class DataRepository {
 
         AtomicReference<Exception> exception = new AtomicReference<>();
 
-        UserService
+        AccountService
                 .getInstance()
                 .createUser(user)
                 .addOnSuccessListener(userRef::getAndSet)

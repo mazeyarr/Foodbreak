@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder>{
     private static final String TAG = "ProductListAdapter";
 
-    private ArrayList<Product> mProducts = new ArrayList<>();
+    private ArrayList<Product> mProducts;
     private Context mContext;
 
     public ProductListAdapter(Context context, ArrayList<Product> products) {

@@ -22,6 +22,7 @@
 
         <!-- Product Module -->
         <activity android:name=".modules.product.activities.ProductActivity"></activity>
+        <activity android:name=".modules.product.activities.ProductCheckoutActivity"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
