@@ -18,19 +18,30 @@ public class AccountService {
         mFirestore = AppDatabase.getFirestore();
     }
 
-    public Task<DocumentReference> createUser(User user) {
-        return mFirestore.collection("users")
-                .add(user);
+    public Task<Void> createUser(User user) {
+        return mFirestore
+                .collection("users")
+                .document(user.getUid())
+                .set(user);
     }
 
-    public Task<DocumentReference> createCompany(CompanyUser user) {
-        return mFirestore.collection("users")
-                .add(user);
+    public Task<Void> createCompany(CompanyUser user) {
+        return mFirestore
+                .collection("users")
+                .document(user.getUid())
+                .set(user);
     }
 
-    public Task<DocumentReference> createAccount(Account account) {
+    public Task<Void> createAccount(Account account) {
+        return mFirestore
+                .collection("users")
+                .document(account.getUid())
+                .set(account);
+    }
+
+    public DocumentReference getAccountByUid(String uid) {
         return mFirestore.collection("users")
-                .add(account);
+                .document(uid);
     }
 
     public static AccountService getInstance() {

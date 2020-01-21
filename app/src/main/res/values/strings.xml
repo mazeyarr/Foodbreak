@@ -10,20 +10,25 @@
 
     <string name="auth_prompt_email">Email</string>
     <string name="auth_prompt_fullname">Full name</string>
+    <string name="auth_prompt_company_name">Company name</string>
     <string name="auth_prompt_brithdate">Date of Birth</string>
+    <string name="auth_prompt_location">Location</string>
     <string name="auth_prompt_username">Username</string>
     <string name="auth_prompt_password">Password</string>
     <string name="auth_prompt_password_confirm">Confirm password</string>
 
     <string name="auth_btn_register">REGISTER</string>
+    <string name="auth_btn_register_company">COMPANY?</string>
+    <string name="auth_btn_register_consumer">CONSUMER?</string>
     <string name="auth_btn_login">LOGIN</string>
-    <string name="auth_btn_login_no_account">GEEN ACCOUNT?</string>
+    <string name="auth_btn_login_no_account">NO ACCOUNT?</string>
 
 
     <!-- Product Module -->
     <string name="product_lbl_food_menu">FOOD</string>
     <string name="product_lbl_drink_menu">DRINKS</string>
     <string name="product_show_title">Menu</string>
+    <string name="product_show_admin_title">Producten</string>
 
     <string name="product_default_price">€ 0.00</string>
     <string name="product_default_title">Product Title</string>

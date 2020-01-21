@@ -19,9 +19,11 @@
         <!-- Auth Module -->
         <activity android:name=".modules.auth.activities.LoginActivity"></activity>
         <activity android:name=".modules.auth.activities.RegisterActivity"></activity>
+        <activity android:name=".modules.auth.activities.RegisterCompanyActivity"></activity>
 
         <!-- Product Module -->
         <activity android:name=".modules.product.activities.ProductActivity"></activity>
+        <activity android:name=".modules.product.activities.ProductAdminActivity"></activity>
         <activity android:name=".modules.product.activities.ProductCheckoutActivity"></activity>
         <meta-data
             android:name="preloaded_fonts"

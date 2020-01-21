@@ -5,6 +5,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.util.Objects;
+
 public class AuthService {
     private static AuthService AUTH_SERVICE_INSTANCE;
 
@@ -23,7 +25,7 @@ public class AuthService {
     }
 
     public Task<Void> updateCurrentProfile(UserProfileChangeRequest changeRequest) {
-        return mFirebaseAuth.getCurrentUser().updateProfile(changeRequest);
+        return Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).updateProfile(changeRequest);
     }
 
     public static AuthService getInstance() {

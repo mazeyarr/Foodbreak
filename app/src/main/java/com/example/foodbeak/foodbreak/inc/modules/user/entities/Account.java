@@ -11,14 +11,14 @@ public class Account {
     private String uid;
 
     @NonNull
-    private String fullname;
+    private String name;
 
     @NonNull
     private String email;
 
-    public Account(@NonNull String uid, @NonNull String fullname, @NonNull String email) {
+    public Account(@NonNull String uid, @NonNull String name, @NonNull String email) {
         this.uid = uid;
-        this.fullname = fullname;
+        this.name = name;
         this.email = email;
     }
 
@@ -30,12 +30,12 @@ public class Account {
         this.uid = uid;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getName() {
+        return name;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

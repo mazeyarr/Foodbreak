@@ -2,12 +2,12 @@ package com.example.foodbeak.foodbreak.inc.database;
 
 import android.app.Application;
 
+import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthService;
+import com.example.foodbeak.foodbreak.inc.modules.user.entities.CompanyUser;
 import com.example.foodbeak.foodbreak.inc.modules.user.entities.User;
 import com.example.foodbeak.foodbreak.inc.modules.user.services.AccountService;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 class DataRepository {
 
@@ -16,25 +16,25 @@ class DataRepository {
     }
 
 
-    DocumentReference createUser(User user) throws Exception {
-        AtomicBoolean error = new AtomicBoolean(false);
-        AtomicReference<DocumentReference> userRef = new AtomicReference<>();
-
-        AtomicReference<Exception> exception = new AtomicReference<>();
-
-        AccountService
+    Task<Void> createUser(User user) {
+        return AccountService
                 .getInstance()
-                .createUser(user)
-                .addOnSuccessListener(userRef::getAndSet)
-                .addOnFailureListener(e -> {
-                    error.set(true);
-                    exception.set(e);
-                });
+                .createUser(user);
+    }
 
-        if (error.get()) {
-            throw exception.get();
+
+    Task<Void> createUser(CompanyUser user) {
+        return AccountService
+                .getInstance()
+                .createCompany(user);
+    }
+
+    DocumentReference getAccount(String uid) throws Exception {
+        if (AuthService.getInstance().isAuthUser()) {
+            return AccountService.getInstance()
+                    .getAccountByUid(uid);
         }
 
-        return userRef.get();
+        throw new Exception("User is not authenticated");
     }
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.modules.CoreModule;
 import com.example.foodbeak.foodbreak.inc.modules.product.activities.ProductActivity;
+import com.example.foodbeak.foodbreak.inc.modules.product.activities.ProductAdminActivity;
 import com.example.foodbeak.foodbreak.inc.modules.product.activities.ProductCheckoutActivity;
 import com.example.foodbeak.foodbreak.inc.modules.product.types.ProductActivitiesType;
 import com.example.foodbeak.foodbreak.inc.modules.shared.activities.SplashActivity;
@@ -22,6 +23,9 @@ public class ProductModule extends CoreModule implements IModule<ProductActiviti
             switch (productActivitiesType) {
                 case PRODUCT_SHOW:
                     return new Intent(context, ProductActivity.class);
+                case PRODUCT_SHOW_ADMIN:
+                    return new Intent(context, ProductAdminActivity.class);
+
                 case PRODUCT_CHECKOUT:
                     return new Intent(context, ProductCheckoutActivity.class);
 
@@ -40,6 +44,9 @@ public class ProductModule extends CoreModule implements IModule<ProductActiviti
         switch (productActivitiesType) {
             case PRODUCT_SHOW:
                 return R.layout.activity_product_show;
+            case PRODUCT_SHOW_ADMIN:
+                return R.layout.activity_product_show_admin;
+
             case PRODUCT_CHECKOUT:
                 return R.layout.activity_product_checkout;
             default:

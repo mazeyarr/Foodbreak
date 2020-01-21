@@ -11,7 +11,7 @@
         android:background="@color/mainBackgroundColor"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        tools:context=".modules.auth.activities.RegisterActivity">
+        tools:context=".modules.auth.activities.RegisterCompanyActivity">
 
         <TextView
             android:id="@+id/lblFoodTitle"
@@ -35,7 +35,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="24dp"
-            android:text="@string/auth_register_slogan"
+            android:text="Company registration."
             android:textColor="@color/titleText"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,11 +43,11 @@
             app:layout_constraintTop_toBottomOf="@+id/lblFoodTitle" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etLayoutFullname"
+            android:id="@+id/etLayoutCompanyName"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/auth_prompt_fullname"
+            android:hint="@string/auth_prompt_company_name"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:labelFor="@+id/etFullname"
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/subtitle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFullname"
+                android:id="@+id/etCompanyName"
                 style="@style/editTextDefaults"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -82,8 +82,8 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
-            app:layout_constraintStart_toStartOf="@+id/etLayoutFullname"
-            app:layout_constraintTop_toBottomOf="@+id/etLayoutFullname">
+            app:layout_constraintStart_toStartOf="@+id/etLayoutCompanyName"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutCompanyName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
@@ -97,14 +97,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etLayoutDateOfBirth"
+            android:id="@+id/etLayoutLocation"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="@string/auth_prompt_brithdate"
+            android:hint="@string/auth_prompt_location"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:labelFor="@+id/etEmail"
+            android:labelFor="@+id/etLocation"
             android:maxLines="1"
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
@@ -113,7 +113,7 @@
             app:layout_constraintTop_toBottomOf="@+id/etLayoutEmail">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDateOfBirth"
+                android:id="@+id/etLocation"
                 style="@style/editTextDefaults"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -136,8 +136,8 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
-            app:layout_constraintStart_toStartOf="@+id/etLayoutDateOfBirth"
-            app:layout_constraintTop_toBottomOf="@+id/etLayoutDateOfBirth">
+            app:layout_constraintStart_toStartOf="@+id/etLayoutLocation"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutLocation">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
@@ -180,28 +180,26 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCompanyRegister"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="151dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="153dp"
+            android:layout_height="0dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/auth_btn_register_company"
+            android:text="@string/auth_btn_register_consumer"
             android:textColor="#ffffff"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/btnRegister"
             app:layout_constraintEnd_toStartOf="@+id/btnRegister"
-            app:layout_constraintHorizontal_bias="0.016"
+            app:layout_constraintHorizontal_bias="0.014"
             app:layout_constraintStart_toStartOf="@+id/etLayoutPasswordConfirm"
             app:layout_constraintTop_toTopOf="@+id/btnRegister"
-            app:layout_constraintVertical_bias="1.0"
             app:rippleColor="#ffffff"
             app:strokeColor="#ffffff" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="140dp"
-            android:layout_height="47dp"
+            android:layout_width="154dp"
+            android:layout_height="45dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/auth_btn_register"

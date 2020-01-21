@@ -8,8 +8,8 @@ public class User extends Account {
     @NonNull
     private String dateOfBirth;
 
-    public User(@NonNull String uid, @NonNull String fullname, @NonNull String email, @NonNull String dateOfBirth) {
-        super(uid, fullname, email);
+    public User(@NonNull String uid, @NonNull String name, @NonNull String email, @NonNull String dateOfBirth) {
+        super(uid, name, email);
         this.dateOfBirth = dateOfBirth;
     }
 

@@ -21,17 +21,21 @@ public class MainState {
     public MainState() {
         MainState.modules = new HashMap<>();
 
-//        removeDefaultUser();
+        removeDefaultUser();
         initializeModules();
     }
 
     private void removeDefaultUser() {
+        FirebaseAuth.getInstance().signOut();
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
                 "mazeyarr@gmail.com",
                 "mazeyar123"
         ).addOnCompleteListener(task -> {
-            FirebaseAuth.getInstance().getCurrentUser().delete();
-            FirebaseAuth.getInstance().signOut();
+            if (task.isSuccessful()) {
+                FirebaseAuth.getInstance().getCurrentUser().delete();
+                FirebaseAuth.getInstance().signOut();
+            }
         });
     }
 

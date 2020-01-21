@@ -5,14 +5,17 @@ import androidx.room.Entity;
 
 @Entity
 public class CompanyUser extends Account {
-    private static final boolean IS_COMPANY = true;
 
     @NonNull
     private String location;
 
-    public CompanyUser(@NonNull String uid, @NonNull String fullname, @NonNull String email, @NonNull String location) {
-        super(uid, fullname, email);
+    @NonNull
+    private Boolean isCompany;
+
+    public CompanyUser(@NonNull String uid, @NonNull String companyName, @NonNull String email, @NonNull String location, @NonNull Boolean isCompany) {
+        super(uid, companyName, email);
         this.location = location;
+        this.isCompany = isCompany;
     }
 
     @NonNull
@@ -22,5 +25,14 @@ public class CompanyUser extends Account {
 
     public void setLocation(@NonNull String location) {
         this.location = location;
+    }
+
+    @NonNull
+    public Boolean getCompany() {
+        return isCompany;
+    }
+
+    public void setCompany(@NonNull Boolean company) {
+        isCompany = company;
     }
 }

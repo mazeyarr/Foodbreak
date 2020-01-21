@@ -18,7 +18,7 @@ import com.example.foodbeak.foodbreak.inc.modules.auth.AuthModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthRegisterService;
 import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthService;
 import com.example.foodbeak.foodbreak.inc.modules.auth.types.AuthActivityTypes;
-import com.example.foodbeak.foodbreak.inc.modules.user.entities.User;
+import com.example.foodbeak.foodbreak.inc.modules.user.entities.CompanyUser;
 import com.example.foodbeak.foodbreak.inc.types.ModuleType;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,8 +34,8 @@ import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
-public class RegisterActivity extends AppCompatActivity implements MyActivity, Validator.ValidationListener {
-    private static final String TAG = "RegisterActivity";
+public class RegisterCompanyActivity extends AppCompatActivity implements MyActivity, Validator.ValidationListener {
+    private static final String TAG = "RegisterCompanyActivity";
 
     AuthService sAuthService;
     AuthRegisterService sAuthRegisterService;
@@ -43,14 +43,14 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
 
     @NotEmpty
     @Length(min = 3)
-    TextInputEditText mFullname;
+    TextInputEditText mCompanyName;
 
     @NotEmpty
     @Email
     TextInputEditText mEmail;
 
     @NotEmpty
-    TextInputEditText mDatebirth;
+    TextInputEditText mLocation;
 
     @Password
     @NotEmpty
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
 
         setContentView(MainState
                 .getModule(ModuleType.AUTH, AuthModule.class)
-                .getLayout(AuthActivityTypes.REGISTER)
+                .getLayout(AuthActivityTypes.REGISTER_COMPANY)
         );
 
         initUIFields();
@@ -81,9 +81,9 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
 
     @Override
     public void initUIFields() {
-        this.mFullname = findViewById(R.id.etFullname);
+        this.mCompanyName = findViewById(R.id.etCompanyName);
         this.mEmail = findViewById(R.id.etEmail);
-        this.mDatebirth = findViewById(R.id.etDateOfBirth);
+        this.mLocation = findViewById(R.id.etLocation);
         this.mPassword = findViewById(R.id.etPassword);
         this.mPasswordConfirm = findViewById(R.id.etPasswordConfirm);
     }
@@ -96,15 +96,15 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
         Button btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this::btnRegisterOnClick);
 
-        Button btnGoToCompanyRegister = findViewById(R.id.btnCompanyRegister);
-        btnGoToCompanyRegister.setOnClickListener(this::goToCompanyRegister);
+        Button btnGoToConsumerRegister = findViewById(R.id.btnCompanyRegister);
+        btnGoToConsumerRegister.setOnClickListener(this::goToConsumerRegister);
     }
 
     @Override
     public void uiCleanup() {
-        this.mFullname.setText("");
+        this.mCompanyName.setText("");
         this.mEmail.setText("");
-        this.mDatebirth.setText("");
+        this.mLocation.setText("");
         this.mPassword.setText("");
         this.mPasswordConfirm.setText("");
     }
@@ -112,9 +112,6 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
 
     protected void btnRegisterOnClick(View v) {
         Log.d(TAG, "btnRegisterOnClick: Clicked!!");
-        Log.d(TAG, "btnRegisterOnClick: fullname = " + this.mFullname.getText());
-        Log.d(TAG, "btnRegisterOnClick: email = " + this.mEmail.getText());
-
         validator.validate();
 
         while (validator.isValidating()) {
@@ -137,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
 
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(
-                                this.mFullname.getText().toString()
+                                this.mCompanyName.getText().toString()
                         )
                         .build();
 
@@ -149,11 +146,12 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
                                 Log.d(TAG, "registerAction: Profile is updated with correct displayName!");
 
                                 try {
-                                    User user = new User(
+                                    CompanyUser user = new CompanyUser(
                                             sAuthService.getAuthUser().getUid(),
                                             sAuthService.getAuthUser().getDisplayName(),
                                             sAuthService.getAuthUser().getEmail(),
-                                            mDatebirth.getText().toString()
+                                            mLocation.getText().toString(),
+                                            true
                                     );
 
                                     mDataViewModel.createUser(user);
@@ -193,12 +191,12 @@ public class RegisterActivity extends AppCompatActivity implements MyActivity, V
         startActivity(i);
     }
 
-    protected void goToCompanyRegister(View v) {
-        Log.d(TAG, "goToCompanyRegister: Going to company register page");
+    protected void goToConsumerRegister(View v) {
+        Log.d(TAG, "goToCompanyRegister: Going to consumer register page");
 
         startActivity(MainState
                 .getModule(ModuleType.AUTH, AuthModule.class)
-                .getActivity(AuthActivityTypes.REGISTER_COMPANY, this)
+                .getActivity(AuthActivityTypes.REGISTER, this)
         );
     }
 

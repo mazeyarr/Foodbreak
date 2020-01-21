@@ -8,9 +8,11 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.foodbeak.foodbreak.inc.MainState;
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.database.DataViewModel;
 import com.example.foodbeak.foodbreak.inc.modules.auth.AuthModule;
 import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthLoginService;
 import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthService;
@@ -22,10 +24,11 @@ import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity implements MyActivity {
-    private static final String TAG = "ProductActivity";
+    private static final String TAG = "LoginActivity";
 
     AuthService mAuthService;
     AuthLoginService mAuthLoginService;
+    DataViewModel mDataViewModel;
 
     TextInputEditText etUsername;
     TextInputEditText etPassword;
@@ -36,20 +39,20 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
 
         mAuthService = AuthService.getInstance();
         mAuthLoginService = AuthLoginService.getInstance();
+        mDataViewModel = ViewModelProviders.of(this).get(DataViewModel.class);
 
 
-        if (mAuthService.isAuthUser()) {
-            goToProducts();
-            finish();
+        handleUserDestination();
+
+        if (!mAuthService.isAuthUser()) {
+            setContentView(MainState
+                    .getModule(ModuleType.AUTH, AuthModule.class)
+                    .getLayout(AuthActivityTypes.LOGIN)
+            );
+
+            initUIFields();
+            initListeners();
         }
-
-        setContentView(MainState
-            .getModule(ModuleType.AUTH, AuthModule.class)
-            .getLayout(AuthActivityTypes.LOGIN)
-        );
-
-        initUIFields();
-        initListeners();
     }
 
     @Override
@@ -84,7 +87,8 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
         ).addOnCompleteListener(loginTask -> {
             if (loginTask.isSuccessful()) {
                 Log.d(TAG, "btnLoginOnClick: Login was successfull!");
-                goToProducts();
+
+                handleUserDestination();
             } else {
                 Log.d(TAG, "btnLoginOnClick: Login failed!");
                 Log.e(TAG, "btnLoginOnClick: " + loginTask.getException().getMessage());
@@ -103,6 +107,29 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
         );
     }
 
+    public void handleUserDestination() {
+        if (mAuthService.isAuthUser()) {
+            try {
+                mDataViewModel.getAccount(
+                        mAuthService.getAuthUser().getUid()
+                ).get().addOnSuccessListener(documentSnapshot -> {
+                    Boolean isCompany = documentSnapshot.get("company", Boolean.TYPE);
+
+                    if (isCompany != null && isCompany) {
+                        goToProductsAdmin();
+                        return;
+                    }
+
+                    goToProducts();
+                });
+            } catch (Exception e) {
+                Log.e(TAG, "handleUserDestination: failed to get the auth user from data view model", e);
+            }
+        }
+
+        Log.d(TAG, "handleUserDestination: Stayin at login, user is not authenticated yet!");
+    }
+
     public void goToProducts() {
         Log.d(TAG, "goToProducts: Going to products page");
 
@@ -111,6 +138,20 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
         Intent i = MainState
                 .getModule(ModuleType.PRODUCT, ProductModule.class)
                 .getActivity(ProductActivitiesType.PRODUCT_SHOW, this);
+        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+        startActivity(i);
+        finish();
+    }
+
+    public void goToProductsAdmin() {
+        Log.d(TAG, "goToProductsAdmin: Going to product admin page");
+
+        uiCleanup();
+
+        Intent i = MainState
+                .getModule(ModuleType.PRODUCT, ProductModule.class)
+                .getActivity(ProductActivitiesType.PRODUCT_SHOW_ADMIN, this);
         i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         startActivity(i);

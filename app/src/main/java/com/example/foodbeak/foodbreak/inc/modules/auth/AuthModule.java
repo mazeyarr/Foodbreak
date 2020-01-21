@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.modules.auth.activities.RegisterCompanyActivity;
 import com.example.foodbeak.foodbreak.inc.modules.shared.activities.SplashActivity;
 import com.example.foodbeak.foodbreak.inc.modules.shared.exceptions.UndefinedActivityException;
 import com.example.foodbeak.foodbreak.inc.modules.CoreModule;
@@ -26,6 +27,9 @@ public class AuthModule extends CoreModule implements IModule<AuthActivityTypes>
                 case REGISTER:
                     return new Intent(context, RegisterActivity.class);
 
+                case REGISTER_COMPANY:
+                    return new Intent(context, RegisterCompanyActivity.class);
+
                 default:
                     throw new UndefinedActivityException();
             }
@@ -43,6 +47,8 @@ public class AuthModule extends CoreModule implements IModule<AuthActivityTypes>
                 return R.layout.activity_login;
             case REGISTER:
                 return R.layout.activity_register;
+            case REGISTER_COMPANY:
+                return R.layout.activity_register_company;
             default:
                 // TODO: Exception
                 return 0;
