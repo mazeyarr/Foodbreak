@@ -109,22 +109,19 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
 
     public void handleUserDestination() {
         if (mAuthService.isAuthUser()) {
-            try {
-                mDataViewModel.getAccount(
-                        mAuthService.getAuthUser().getUid()
-                ).get().addOnSuccessListener(documentSnapshot -> {
-                    Boolean isCompany = documentSnapshot.get("company", Boolean.TYPE);
-
-                    if (isCompany != null && isCompany) {
+            mDataViewModel.setAuthUser().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    if (mDataViewModel.isAuthIsCompany()) {
                         goToProductsAdmin();
                         return;
                     }
 
                     goToProducts();
-                });
-            } catch (Exception e) {
-                Log.e(TAG, "handleUserDestination: failed to get the auth user from data view model", e);
-            }
+                }
+
+                Log.e(TAG, "handleUserDestination: failed to get the auth user from data view model");
+            });
+
         }
 
         Log.d(TAG, "handleUserDestination: Stayin at login, user is not authenticated yet!");

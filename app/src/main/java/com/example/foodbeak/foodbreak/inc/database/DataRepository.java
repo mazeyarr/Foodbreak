@@ -29,6 +29,12 @@ class DataRepository {
                 .createCompany(user);
     }
 
+    DocumentReference getAuthAccount() {
+        return AccountService.getInstance().getAccountByUid(
+                AuthService.getInstance().getAuthUser().getUid()
+        );
+    }
+
     DocumentReference getAccount(String uid) throws Exception {
         if (AuthService.getInstance().isAuthUser()) {
             return AccountService.getInstance()

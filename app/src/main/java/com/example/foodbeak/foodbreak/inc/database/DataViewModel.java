@@ -9,11 +9,13 @@ import com.example.foodbeak.foodbreak.inc.modules.user.entities.CompanyUser;
 import com.example.foodbeak.foodbreak.inc.modules.user.entities.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataViewModel extends AndroidViewModel {
+    private boolean authIsCompany = false;
     private User mAuthUser;
     private CompanyUser mAuthCompanyUser;
 
@@ -33,6 +35,20 @@ public class DataViewModel extends AndroidViewModel {
     }
     public Task<Void> createUser(CompanyUser user) throws Exception {
        return mDataRepository.createUser(user);
+    }
+
+
+    public Task<DocumentSnapshot> setAuthUser() {
+        return mDataRepository.getAuthAccount()
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.get("company") != null) {
+                        this.authIsCompany = true;
+                        this.setAuthUser(documentSnapshot.toObject(CompanyUser.class));
+                    } else {
+                        this.setAuthUser();
+                    }
+                });
     }
 
     public void setAuthUser(User user) {
@@ -59,5 +75,7 @@ public class DataViewModel extends AndroidViewModel {
         return mDataRepository.getAccount(uid);
     }
 
-    // Product
+    public boolean isAuthIsCompany() {
+        return authIsCompany;
+    }
 }
