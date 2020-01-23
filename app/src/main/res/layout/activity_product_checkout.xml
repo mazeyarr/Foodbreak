@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackgroundColor"
-    tools:context=".modules.product.activities.ProductCheckoutActivity">
+    tools:context=".activities.product.ProductCheckoutActivity">
 
     <TextView
         android:layout_width="match_parent"

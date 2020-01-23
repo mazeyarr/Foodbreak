@@ -1,5 +1,6 @@
-package com.example.foodbeak.foodbreak.inc.modules.product.activities;
+package com.example.foodbeak.foodbreak.inc.activities.product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,24 +10,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodbeak.foodbreak.inc.MainState;
 import com.example.foodbeak.foodbreak.inc.R;
-import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthLoginService;
-import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthService;
-import com.example.foodbeak.foodbreak.inc.modules.product.ProductModule;
-import com.example.foodbeak.foodbreak.inc.modules.product.adapters.ProductListAdapter;
-import com.example.foodbeak.foodbreak.inc.modules.product.entities.Product;
-import com.example.foodbeak.foodbreak.inc.modules.product.types.ProductActivitiesType;
-import com.example.foodbeak.foodbreak.inc.types.ModuleType;
+import com.example.foodbeak.foodbreak.inc.adapters.ProductListAdapter;
+import com.example.foodbeak.foodbreak.inc.models.Product;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 
 import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity implements MyActivity {
     private static final String TAG = "ProductActivity";
-
-    AuthService sAuthService;
-    AuthLoginService sAuthLoginService;
 
     private RecyclerView mFoodRecyclerView;
     private RecyclerView.Adapter mFoodListAdapter;
@@ -44,13 +36,7 @@ public class ProductActivity extends AppCompatActivity implements MyActivity {
 
         Log.e(TAG, "onCreate: products created");
 
-        sAuthService = AuthService.getInstance();
-        sAuthLoginService = AuthLoginService.getInstance();
-
-        setContentView(MainState
-                .getModule(ModuleType.PRODUCT, ProductModule.class)
-                .getLayout(ProductActivitiesType.PRODUCT_SHOW)
-        );
+        setContentView(R.layout.activity_product_show);
 
         initUIFields();
         initListeners();
@@ -121,9 +107,6 @@ public class ProductActivity extends AppCompatActivity implements MyActivity {
 
         uiCleanup();
 
-        startActivity(MainState
-                .getModule(ModuleType.PRODUCT, ProductModule.class)
-                .getActivity(ProductActivitiesType.PRODUCT_CHECKOUT, this)
-        );
+        startActivity(new Intent(this, ProductCheckoutActivity.class));
     }
 }

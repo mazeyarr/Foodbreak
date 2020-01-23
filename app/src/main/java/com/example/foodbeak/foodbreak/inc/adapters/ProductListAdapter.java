@@ -1,4 +1,4 @@
-package com.example.foodbeak.foodbreak.inc.modules.product.adapters;
+package com.example.foodbeak.foodbreak.inc.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodbeak.foodbreak.inc.R;
-import com.example.foodbeak.foodbreak.inc.modules.product.entities.Product;
+import com.example.foodbeak.foodbreak.inc.models.Product;
 
 import java.util.ArrayList;
 

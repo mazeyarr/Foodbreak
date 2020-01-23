@@ -1,4 +1,4 @@
-package com.example.foodbeak.foodbreak.inc.modules.product.activities;
+package com.example.foodbeak.foodbreak.inc.activities.product;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,19 +6,11 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodbeak.foodbreak.inc.MainState;
-import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthLoginService;
-import com.example.foodbeak.foodbreak.inc.modules.auth.services.AuthService;
-import com.example.foodbeak.foodbreak.inc.modules.product.ProductModule;
-import com.example.foodbeak.foodbreak.inc.modules.product.types.ProductActivitiesType;
-import com.example.foodbeak.foodbreak.inc.types.ModuleType;
+import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 
 public class ProductAdminActivity extends AppCompatActivity implements MyActivity {
     private static final String TAG = "ProductAdminActivity";
-
-    AuthService sAuthService;
-    AuthLoginService sAuthLoginService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,13 +18,7 @@ public class ProductAdminActivity extends AppCompatActivity implements MyActivit
 
         Log.d(TAG, "onCreate: products admin created");
 
-        sAuthService = AuthService.getInstance();
-        sAuthLoginService = AuthLoginService.getInstance();
-
-        setContentView(MainState
-                .getModule(ModuleType.PRODUCT, ProductModule.class)
-                .getLayout(ProductActivitiesType.PRODUCT_SHOW_ADMIN)
-        );
+        setContentView(R.layout.activity_product_show_admin);
 
         initUIFields();
         initListeners();
@@ -57,8 +43,5 @@ public class ProductAdminActivity extends AppCompatActivity implements MyActivit
 
     @Override
     public void uiCleanup() {
-    }
-
-    public void goToOrders() {
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackgroundColor"
-    tools:context=".modules.product.activities.ProductActivity">
+    tools:context=".activities.product.ProductActivity">
 
     <TextView
         android:id="@+id/lblFoodTitle"
