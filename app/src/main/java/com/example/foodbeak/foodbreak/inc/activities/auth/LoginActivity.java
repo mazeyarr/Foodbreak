@@ -1,6 +1,6 @@
 package com.example.foodbeak.foodbreak.inc.activities.auth;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
+import com.example.foodbeak.foodbreak.inc.types.Route;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity implements MyActivity {
@@ -62,6 +64,15 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
 
         uiCleanup();
 
-        startActivity(new Intent(this, RegisterActivity.class));
+        Router.getInstance().goTo(RegisterActivity.getRoute(this));
+    }
+
+    public static Route getRoute(Context context) {
+        return new Route(
+                "Login",
+                context,
+                LoginActivity.class,
+                R.layout.activity_login
+        );
     }
 }

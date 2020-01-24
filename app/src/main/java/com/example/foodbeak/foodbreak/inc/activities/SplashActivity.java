@@ -1,6 +1,5 @@
 package com.example.foodbeak.foodbreak.inc.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodbeak.foodbreak.inc.MainApp;
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.activities.auth.LoginActivity;
 
 import java.util.Timer;
@@ -45,6 +45,8 @@ public class SplashActivity extends AppCompatActivity {
     private void startLoginActivity() {
         Log.d(TAG, "startLoginActivity: starting login!");
 
-        startActivity(new Intent(this, LoginActivity.class));
+        Router.getInstance().goTo(
+                LoginActivity.getRoute(this)
+        );
     }
 }

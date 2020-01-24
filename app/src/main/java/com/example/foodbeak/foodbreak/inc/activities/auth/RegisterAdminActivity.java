@@ -1,6 +1,6 @@
 package com.example.foodbeak.foodbreak.inc.activities.auth;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.database.DataViewModel;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
+import com.example.foodbeak.foodbreak.inc.types.Route;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -115,7 +117,7 @@ public class RegisterAdminActivity extends AppCompatActivity implements MyActivi
     protected void goToConsumerRegister(View v) {
         Log.d(TAG, "goToCompanyRegister: Going to consumer register page");
 
-        startActivity(new Intent(this, RegisterActivity.class));
+        Router.getInstance().goTo(RegisterActivity.getRoute(this));
     }
 
     @Override
@@ -143,5 +145,14 @@ public class RegisterAdminActivity extends AppCompatActivity implements MyActivi
                 Log.e(TAG, "onValidationFailed: " + errorMessage);
             }
         }
+    }
+
+    public static Route getRoute(Context context) {
+        return new Route(
+                "Register Company",
+                context,
+                RegisterAdminActivity.class,
+                R.layout.activity_register_company
+        );
     }
 }
