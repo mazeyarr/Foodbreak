@@ -86,3 +86,4 @@ lint/tmp/
 .DS_Store
 .idea/.name
 app/google-services.json
+.vscode/settings.json
