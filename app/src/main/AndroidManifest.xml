@@ -17,14 +17,14 @@
         </activity>
 
         <!-- Auth Module -->
-        <activity android:name=".activities.auth.LoginActivity"></activity>
-        <activity android:name=".activities.auth.RegisterActivity"></activity>
-        <activity android:name=".activities.auth.RegisterAdminActivity"></activity>
+        <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.register.RegisterConsumerActivity"></activity>
+        <activity android:name=".activities.register.RegisterCompanyActivity"></activity>
 
         <!-- Product Module -->
-        <activity android:name=".activities.product.ProductActivity"></activity>
-        <activity android:name=".activities.product.ProductAdminActivity"></activity>
-        <activity android:name=".activities.product.ProductCheckoutActivity"></activity>
+        <activity android:name=".activities.product.ProductConsumerActivity"></activity>
+        <activity android:name=".activities.product.ProductCompanyActivity"></activity>
+        <activity android:name=".activities.product.ProductConsumerCheckoutActivity"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

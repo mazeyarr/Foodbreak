@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackgroundColor"
-    tools:context=".activities.product.ProductAdminActivity">
+    tools:context=".activities.product.ProductConsumerActivity">
 
     <TextView
         android:id="@+id/lblFoodTitle"
-        android:layout_width="294dp"
-        android:layout_height="51dp"
+        android:layout_width="257dp"
+        android:layout_height="46dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="@string/product_show_admin_title"
+        android:text="@string/product_show_title"
         android:textAlignment="center"
         android:textColor="@color/titleText"
         android:textSize="45sp"
@@ -95,12 +95,57 @@
         android:id="@+id/footerBrand"
         android:layout_width="98dp"
         android:layout_height="56dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="36dp"
         android:contentDescription="@string/app_logo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcvProductDrinkList"
-        app:layout_constraintVertical_bias="0.493"
+        app:layout_constraintBottom_toBottomOf="@+id/cslCheckout"
+        app:layout_constraintStart_toStartOf="@+id/rcvProductDrinkList"
+        app:layout_constraintTop_toTopOf="@+id/cslCheckout"
+        app:layout_constraintVertical_bias="0.09"
         app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cslCheckout"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/footerBrand"
+        app:layout_constraintTop_toBottomOf="@+id/rcvProductDrinkList"
+        app:layout_constraintVertical_bias="0.521">
+
+        <TextView
+            android:id="@+id/lblSubtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingLeft="5dp"
+            android:text="@string/product_default_price"
+            android:textColor="@color/titleText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.521" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblSubtotal"
+            app:layout_constraintStart_toEndOf="@+id/lblSubtotal"
+            app:layout_constraintTop_toTopOf="@+id/lblSubtotal"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@mipmap/baseline_keyboard_arrow_right_white_48" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

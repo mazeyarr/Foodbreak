@@ -33,6 +33,10 @@ public class Router {
         }
     }
 
+    public Route getCurrentRoute() {
+        return currentRoute;
+    }
+
     public static Router getInstance() {
         if (ROUTER_INSTANCE == null) {
             synchronized (MainApp.class) {

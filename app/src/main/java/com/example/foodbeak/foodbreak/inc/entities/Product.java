@@ -1,4 +1,4 @@
-package com.example.foodbeak.foodbreak.inc.models;
+package com.example.foodbeak.foodbreak.inc.entities;
 
 public class Product {
     private String name;

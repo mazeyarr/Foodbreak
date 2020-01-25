@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 
-public class ProductCheckoutActivity extends AppCompatActivity implements MyActivity {
-    private static final String TAG = "ProductCheckoutActivity";
+public class ProductConsumerCheckoutActivity extends AppCompatActivity implements MyActivity {
+    private static final String TAG = "ProductConsCheckoutA";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +26,11 @@ public class ProductCheckoutActivity extends AppCompatActivity implements MyActi
 
     @Override
     public void initUIFields() {
+    }
+
+    @Override
+    public void initUIData() {
+
     }
 
     @Override

@@ -6,10 +6,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodbeak.foodbreak.inc.MainApp;
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
-import com.example.foodbeak.foodbreak.inc.activities.auth.LoginActivity;
+import com.example.foodbeak.foodbreak.inc.activities.register.RegisterConsumerActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,8 +21,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        new MainApp();
 
         setContentView(R.layout.activity_splash);
 
@@ -46,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         Log.d(TAG, "startLoginActivity: starting login!");
 
         Router.getInstance().goTo(
-                LoginActivity.getRoute(this)
+                RegisterConsumerActivity.getRoute(this)
         );
     }
 }

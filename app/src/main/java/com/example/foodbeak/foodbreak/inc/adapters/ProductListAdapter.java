@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodbeak.foodbreak.inc.R;
-import com.example.foodbeak.foodbreak.inc.models.Product;
+import com.example.foodbeak.foodbreak.inc.entities.Product;
 
 import java.util.ArrayList;
 

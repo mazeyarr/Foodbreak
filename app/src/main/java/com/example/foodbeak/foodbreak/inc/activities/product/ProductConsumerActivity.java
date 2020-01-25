@@ -1,5 +1,6 @@
 package com.example.foodbeak.foodbreak.inc.activities.product;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodbeak.foodbreak.inc.R;
+import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.adapters.ProductListAdapter;
-import com.example.foodbeak.foodbreak.inc.models.Product;
+import com.example.foodbeak.foodbreak.inc.entities.Product;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
+import com.example.foodbeak.foodbreak.inc.types.Route;
 
 import java.util.ArrayList;
 
-public class ProductActivity extends AppCompatActivity implements MyActivity {
-    private static final String TAG = "ProductActivity";
+public class ProductConsumerActivity extends AppCompatActivity implements MyActivity {
+    private static final String TAG = "ProductConsumerActivity";
 
     private RecyclerView mFoodRecyclerView;
     private RecyclerView.Adapter mFoodListAdapter;
@@ -36,7 +39,7 @@ public class ProductActivity extends AppCompatActivity implements MyActivity {
 
         Log.e(TAG, "onCreate: products created");
 
-        setContentView(R.layout.activity_product_show);
+        setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
         initUIFields();
         initListeners();
@@ -48,6 +51,11 @@ public class ProductActivity extends AppCompatActivity implements MyActivity {
         initDrinkProducts();
 
         this.mCheckoutConstrainLayout = findViewById(R.id.cslCheckout);
+    }
+
+    @Override
+    public void initUIData() {
+
     }
 
     public void initFoodProducts() {
@@ -107,6 +115,15 @@ public class ProductActivity extends AppCompatActivity implements MyActivity {
 
         uiCleanup();
 
-        startActivity(new Intent(this, ProductCheckoutActivity.class));
+        startActivity(new Intent(this, ProductConsumerCheckoutActivity.class));
+    }
+
+    public static Route getRoute(Context context) {
+        return new Route(
+                "Product Consumer Show",
+                context,
+                ProductConsumerActivity.class,
+                R.layout.activity_product_show_consumer
+        );
     }
 }

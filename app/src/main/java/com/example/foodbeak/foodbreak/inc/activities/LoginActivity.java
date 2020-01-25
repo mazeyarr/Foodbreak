@@ -1,4 +1,4 @@
-package com.example.foodbeak.foodbreak.inc.activities.auth;
+package com.example.foodbeak.foodbreak.inc.activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
+import com.example.foodbeak.foodbreak.inc.activities.register.RegisterConsumerActivity;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.types.Route;
 import com.google.android.material.textfield.TextInputEditText;
@@ -25,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_login);
+        setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
         initUIFields();
         initListeners();
@@ -35,6 +36,11 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
     public void initUIFields() {
         this.etUsername = findViewById(R.id.etUsername);
         this.etPassword = findViewById(R.id.etPassword);
+    }
+
+    @Override
+    public void initUIData() {
+
     }
 
     @Override
@@ -64,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements MyActivity {
 
         uiCleanup();
 
-        Router.getInstance().goTo(RegisterActivity.getRoute(this));
+        Router.getInstance().goTo(RegisterConsumerActivity.getRoute(this));
     }
 
     public static Route getRoute(Context context) {
