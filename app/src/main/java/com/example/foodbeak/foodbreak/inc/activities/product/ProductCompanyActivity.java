@@ -35,7 +35,7 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     private RecyclerView.Adapter mDrinkListAdapter;
     private RecyclerView.LayoutManager mDrinkListLayoutManager;
 
-    Company testCompany = new Company("food@food.nl", "food", "ams");
+    Company company;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
         setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
         mProductsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
+
+        mProductsViewModel.getAuthCompany().observe(this, newCompany -> company = newCompany);
 
         initUIFields();
         initUIData();
@@ -67,11 +69,11 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     public void initFoodProducts() {
         ArrayList<Product> products = new ArrayList<>();
 
-        products.add(new Product("Friet", 2.50f, false, ProductType.FOOD, testCompany));
-        products.add(new Product("Brood", 1.00f, false, ProductType.FOOD, testCompany));
-        products.add(new Product("Chips", 3.00f, false, ProductType.FOOD, testCompany));
-        products.add(new Product("Hotdog", 5.00f, false, ProductType.FOOD, testCompany));
-        products.add(new Product("Pizza", 5.00f, false, ProductType.FOOD, testCompany));
+        products.add(new Product("Friet", 2.50f, false, ProductType.FOOD, company));
+        products.add(new Product("Brood", 1.00f, false, ProductType.FOOD, company));
+        products.add(new Product("Chips", 3.00f, false, ProductType.FOOD, company));
+        products.add(new Product("Hotdog", 5.00f, false, ProductType.FOOD, company));
+        products.add(new Product("Pizza", 5.00f, false, ProductType.FOOD, company));
 
         this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);
         this.mFoodRecyclerView.setHasFixedSize(true);
@@ -86,11 +88,11 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     public void initDrinkProducts() {
         ArrayList<Product> products = new ArrayList<>();
 
-        products.add(new Product("Cola", 2.50f, false, ProductType.DRINK, testCompany));
-        products.add(new Product("Red Bull", 1.00f, false, ProductType.DRINK, testCompany));
-        products.add(new Product("Bullit", 3.00f, false, ProductType.DRINK, testCompany));
-        products.add(new Product("Fanta", 5.00f, false, ProductType.DRINK, testCompany));
-        products.add(new Product("Sprite", 5.00f, false, ProductType.DRINK, testCompany));
+        products.add(new Product("Cola", 2.50f, false, ProductType.DRINK, company));
+        products.add(new Product("Red Bull", 1.00f, false, ProductType.DRINK, company));
+        products.add(new Product("Bullit", 3.00f, false, ProductType.DRINK, company));
+        products.add(new Product("Fanta", 5.00f, false, ProductType.DRINK, company));
+        products.add(new Product("Sprite", 5.00f, false, ProductType.DRINK, company));
 
         this.mDrinkRecyclerView = findViewById(R.id.rcvProductDrinkList);
         this.mDrinkRecyclerView.setHasFixedSize(true);

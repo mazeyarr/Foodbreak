@@ -7,12 +7,25 @@ import com.example.foodbeak.foodbreak.inc.entities.Consumer;
 
 import java.util.ArrayList;
 
-abstract public class CoreRepository {
+public class CoreRepository {
+    private static volatile CoreRepository CORE_REPOSITORY_INSTANCE;
+
     private MutableLiveData<Boolean> mIsUpdating;
     private MutableLiveData<ArrayList<String>> mErrors;
     private MutableLiveData<Boolean> mIsComplete;
     private MutableLiveData<Consumer> mAuthConsumer;
     private MutableLiveData<Company> mAuthCompany;
+
+    public static CoreRepository getInstance() {
+        if (CORE_REPOSITORY_INSTANCE == null) {
+            synchronized (LoginRepository.class) {
+                if (CORE_REPOSITORY_INSTANCE == null) {
+                    CORE_REPOSITORY_INSTANCE = new CoreRepository();
+                }
+            }
+        }
+        return CORE_REPOSITORY_INSTANCE;
+    }
 
     public void initErrors() {
         mErrors = new MutableLiveData<>();
@@ -31,18 +44,18 @@ abstract public class CoreRepository {
         mIsComplete.setValue(false);
     }
     public void initAuthConsumer() {
-        if (mAuthConsumer !=null) {
+        if (getInstance().mAuthConsumer !=null) {
             return;
         }
 
-        mAuthConsumer = new MutableLiveData<>();
+        getInstance().mAuthConsumer = new MutableLiveData<>();
     }
     public void initAuthCompany() {
-        if (mAuthCompany !=null) {
+        if (getInstance().mAuthCompany !=null) {
             return;
         }
 
-        mAuthCompany = new MutableLiveData<>();
+        getInstance().mAuthCompany = new MutableLiveData<>();
     }
 
     public MutableLiveData<Boolean> getIsUpdating() {
@@ -55,10 +68,10 @@ abstract public class CoreRepository {
         return mIsComplete;
     }
     public MutableLiveData<Consumer> getAuthConsumer() {
-        return mAuthConsumer;
+        return getInstance().mAuthConsumer;
     }
     public MutableLiveData<Company> getAuthCompany() {
-        return mAuthCompany;
+        return getInstance().mAuthCompany;
     }
 
 
@@ -72,10 +85,10 @@ abstract public class CoreRepository {
         mIsComplete.postValue(toggle);
     }
     public void updateAuthConsumer(Consumer consumer) {
-        this.mAuthConsumer.postValue(consumer);
+        getInstance().mAuthConsumer.postValue(consumer);
     }
     public void updateAuthCompany(Company company) {
-        this.mAuthCompany.postValue(company);
+        getInstance().mAuthCompany.postValue(company);
     }
 
     public void addError(String error) {
