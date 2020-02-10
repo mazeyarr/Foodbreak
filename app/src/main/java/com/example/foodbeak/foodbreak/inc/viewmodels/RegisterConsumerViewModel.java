@@ -8,12 +8,11 @@ import androidx.lifecycle.LiveData;
 
 import com.example.foodbeak.foodbreak.inc.entities.Consumer;
 import com.example.foodbeak.foodbreak.inc.repositories.RegisterConsumerRepository;
+import com.example.foodbeak.foodbreak.inc.types.MyViewModel;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-
-public class RegisterConsumerViewModel extends AndroidViewModel {
+public class RegisterConsumerViewModel extends AndroidViewModel implements MyViewModel<RegisterConsumerRepository> {
     private static final String TAG = "RegisterConsumerVM";
 
     private RegisterConsumerRepository mRegisterConsumerRepo;
@@ -24,32 +23,12 @@ public class RegisterConsumerViewModel extends AndroidViewModel {
         mRegisterConsumerRepo = RegisterConsumerRepository.getInstance();
     }
 
-    public LiveData<Boolean> isUpdating() {
-        return mRegisterConsumerRepo.getIsUpdating();
-    }
-
-    public LiveData<Boolean> isComplete() {
-        return mRegisterConsumerRepo.getIsComplete();
-    }
-
-    public LiveData<ArrayList<String>> getErrors() {
-        return mRegisterConsumerRepo.getErrors();
-    }
-
     public LiveData<Consumer> getConsumerRegistration() {
         return mRegisterConsumerRepo.getConsumerRegistration();
     }
 
     public void updateConsumerRegistration(Consumer Consumer) {
         mRegisterConsumerRepo.updateConsumerRegistration(Consumer);
-    }
-
-    public void updateErrors(ArrayList<String> errors) {
-        mRegisterConsumerRepo.updateErrors(errors);
-    }
-
-    public void addError(String error) {
-        mRegisterConsumerRepo.addError(error);
     }
 
     public void sendConsumerRegistration(String password) {
@@ -83,12 +62,15 @@ public class RegisterConsumerViewModel extends AndroidViewModel {
         }
     }
 
+    @Override
     public void init() {
+        initDefaults();
         mRegisterConsumerRepo.initConsumerRegistration();
-        mRegisterConsumerRepo.initIsUpdating();
-        mRegisterConsumerRepo.initIsComplete();
-        mRegisterConsumerRepo.initErrors();
     }
 
 
+    @Override
+    public RegisterConsumerRepository getRepo() {
+        return mRegisterConsumerRepo;
+    }
 }

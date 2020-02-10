@@ -1,4 +1,4 @@
-package com.example.foodbeak.foodbreak.inc.types;
+package com.example.foodbeak.foodbreak.inc.entities;
 
 import android.content.Context;
 import android.content.Intent;

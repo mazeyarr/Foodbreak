@@ -13,6 +13,9 @@ public class Company {
         this.isCompany = true;
     }
 
+    public Company() {
+    }
+
     public static Company defCompany() {
         return new Company("", "", "");
     }

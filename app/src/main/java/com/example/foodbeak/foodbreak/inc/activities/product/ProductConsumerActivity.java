@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
-import com.example.foodbeak.foodbreak.inc.adapters.ProductListAdapter;
+import com.example.foodbeak.foodbreak.inc.adapters.ProductConsumerListAdapter;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
-import com.example.foodbeak.foodbreak.inc.types.Route;
+import com.example.foodbeak.foodbreak.inc.entities.Route;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
         setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
         initUIFields();
+        initUIData();
         initListeners();
     }
 
@@ -72,7 +73,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
         this.mFoodListLayoutManager = new LinearLayoutManager(this);
         this.mFoodRecyclerView.setLayoutManager(mFoodListLayoutManager);
 
-        this.mFoodListAdapter = new ProductListAdapter(this, products);
+        this.mFoodListAdapter = new ProductConsumerListAdapter(this, products);
         mFoodRecyclerView.setAdapter(mFoodListAdapter);
     }
 
@@ -91,7 +92,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
         this.mDrinkListLayoutManager = new LinearLayoutManager(this);
         this.mDrinkRecyclerView.setLayoutManager(mDrinkListLayoutManager);
 
-        this.mDrinkListAdapter = new ProductListAdapter(this, products);
+        this.mDrinkListAdapter = new ProductConsumerListAdapter(this, products);
         mDrinkRecyclerView.setAdapter(mDrinkListAdapter);
     }
 

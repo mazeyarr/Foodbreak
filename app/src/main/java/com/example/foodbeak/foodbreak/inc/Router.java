@@ -1,6 +1,8 @@
 package com.example.foodbeak.foodbreak.inc;
 
-import com.example.foodbeak.foodbreak.inc.types.Route;
+import android.util.Log;
+
+import com.example.foodbeak.foodbreak.inc.entities.Route;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ public class Router {
     private Route currentRoute;
 
     public void goTo(Route route) {
+        Log.d(TAG, "goTo: 123");
+
         route.getContext()
                 .startActivity(route.getIntent());
 

@@ -17,13 +17,13 @@ import com.example.foodbeak.foodbreak.inc.entities.Product;
 
 import java.util.ArrayList;
 
-public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder>{
-    private static final String TAG = "ProductListAdapter";
+public class ProductConsumerListAdapter extends RecyclerView.Adapter<ProductConsumerListAdapter.ViewHolder>{
+    private static final String TAG = "ProductConsumerListA";
 
     private ArrayList<Product> mProducts;
     private Context mContext;
 
-    public ProductListAdapter(Context context, ArrayList<Product> products) {
+    public ProductConsumerListAdapter(Context context, ArrayList<Product> products) {
         this.mProducts = products;
         this.mContext = context;
     }
@@ -32,7 +32,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.layout_product_item,
+                R.layout.layout_consumer_product_item,
                 parent,
                 false
         );
@@ -45,7 +45,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Log.d(TAG, "onBindViewHolder: called");
 
         holder.mProductTitle.setText(mProducts.get(position).getName());
-        holder.mProductPrice.setText(mProducts.get(position).getPrice());
+        holder.mProductPrice.setText(mProducts.get(position).getPrice().toString());
 
         holder.mBtnAddProductToCart.setOnClickListener(v -> {
             Toast.makeText(mContext, "added " + mProducts.get(position).getName() + " to cart", Toast.LENGTH_SHORT).show();
@@ -62,13 +62,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         return mProducts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView mProductTitle;
         TextView mProductPrice;
         Button mBtnAddProductToCart;
         Button mBtnRemoveProductFromCart;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mProductTitle = itemView.findViewById(R.id.lblProductTitle);

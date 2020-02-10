@@ -8,9 +8,105 @@
     tools:context=".activities.product.ProductConsumerCheckoutActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello Checkout!"/>
+        android:id="@+id/lblFoodTitle"
+        android:layout_width="294dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="PAYMENT"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="216dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Totaal: € 7.00"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblFoodTitle" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Hamburger"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Fanta 250 ML"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="92dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="€ 2,50"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="€ 2,50"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

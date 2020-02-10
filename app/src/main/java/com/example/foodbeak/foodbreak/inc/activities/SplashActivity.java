@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
-import com.example.foodbeak.foodbreak.inc.activities.register.RegisterConsumerActivity;
+import com.example.foodbeak.foodbreak.inc.activities.register.RegisterCompanyActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         Log.d(TAG, "startLoginActivity: starting login!");
 
         Router.getInstance().goTo(
-                RegisterConsumerActivity.getRoute(this)
+                LoginActivity.getRoute(this)
         );
     }
 }

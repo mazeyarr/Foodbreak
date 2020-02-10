@@ -21,7 +21,7 @@ import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.activities.product.ProductConsumerActivity;
 import com.example.foodbeak.foodbreak.inc.entities.Consumer;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
-import com.example.foodbeak.foodbreak.inc.types.Route;
+import com.example.foodbeak.foodbreak.inc.entities.Route;
 import com.example.foodbeak.foodbreak.inc.viewmodels.RegisterConsumerViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;

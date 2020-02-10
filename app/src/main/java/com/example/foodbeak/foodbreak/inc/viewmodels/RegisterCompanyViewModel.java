@@ -8,12 +8,11 @@ import androidx.lifecycle.LiveData;
 
 import com.example.foodbeak.foodbreak.inc.entities.Company;
 import com.example.foodbeak.foodbreak.inc.repositories.RegisterCompanyRepository;
+import com.example.foodbeak.foodbreak.inc.types.MyViewModel;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-
-public class RegisterCompanyViewModel extends AndroidViewModel {
+public class RegisterCompanyViewModel extends AndroidViewModel implements MyViewModel<RegisterCompanyRepository> {
     private static final String TAG = "RegisterCompanyVM";
 
     private RegisterCompanyRepository mRegisterCompanyRepo;
@@ -24,32 +23,12 @@ public class RegisterCompanyViewModel extends AndroidViewModel {
         mRegisterCompanyRepo = RegisterCompanyRepository.getInstance();
     }
 
-    public LiveData<Boolean> isUpdating() {
-        return mRegisterCompanyRepo.getIsUpdating();
-    }
-
-    public LiveData<Boolean> isComplete() {
-        return mRegisterCompanyRepo.getIsComplete();
-    }
-
-    public LiveData<ArrayList<String>> getErrors() {
-        return mRegisterCompanyRepo.getErrors();
-    }
-
     public LiveData<Company> getCompanyRegistration() {
         return mRegisterCompanyRepo.getCompanyRegistration();
     }
 
     public void updateCompanyRegistration(Company company) {
         mRegisterCompanyRepo.updateCompanyRegistration(company);
-    }
-
-    public void updateErrors(ArrayList<String> errors) {
-        mRegisterCompanyRepo.updateErrors(errors);
-    }
-
-    public void addError(String error) {
-        mRegisterCompanyRepo.addError(error);
     }
 
     public void sendCompanyRegistration(String password) {
@@ -83,12 +62,16 @@ public class RegisterCompanyViewModel extends AndroidViewModel {
         }
     }
 
+    @Override
     public void init() {
+        initDefaults();
         mRegisterCompanyRepo.initCompanyRegistration();
-        mRegisterCompanyRepo.initIsUpdating();
-        mRegisterCompanyRepo.initIsComplete();
-        mRegisterCompanyRepo.initErrors();
     }
 
+
+    @Override
+    public RegisterCompanyRepository getRepo() {
+        return mRegisterCompanyRepo;
+    }
 
 }

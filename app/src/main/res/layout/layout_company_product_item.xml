@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlProductItemLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp">
+
+        <TextView
+            android:id="@+id/lblProductTitle"
+            android:layout_width="173dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/product_default_title"
+            android:textAlignment="textStart"
+            android:textColor="@color/titleText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAddToStorage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/lblItemAmount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="#0"
+            android:textAlignment="center"
+            android:textColor="@color/titleText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRemoveFromStorage"
+            app:layout_constraintStart_toEndOf="@+id/btnAddToStorage"
+            app:layout_constraintTop_toTopOf="@+id/btnRemoveFromStorage" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddToStorage"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/product_btn_add_to_cart"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/lblItemAmount"
+            app:layout_constraintStart_toEndOf="@+id/lblProductTitle"
+            app:layout_constraintTop_toTopOf="@+id/lblItemAmount"
+            app:layout_constraintVertical_bias="0.0"
+            app:rippleColor="#ffffff"
+            app:strokeColor="#ffffff" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRemoveFromStorage"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/btnAddToStorage"
+            android:layout_alignBottom="@+id/btnAddToStorage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/product_btn_remove_from_cart"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#ffffff"
+            app:strokeColor="#ffffff" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

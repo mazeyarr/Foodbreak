@@ -13,12 +13,15 @@ public class Consumer {
         this.birthday = birthday;
     }
 
+    public Consumer() {
+    }
+
     public static Consumer defConsumer() {
         return new Consumer("", "", "", "");
     }
 
     public String getFullname() {
-        return this.getFirstname() + this.getLastname();
+        return this.getFirstname() + " " + this.getLastname();
     }
 
     public String getEmail() {
