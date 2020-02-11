@@ -37,5 +37,11 @@
     <string name="product_default_title">Product Title</string>
     <string name="product_btn_add_to_cart">+</string>
     <string name="product_btn_remove_from_cart">-</string>
-    
+
+    <string name="product_lbl_create">New Product</string>
+    <string name="product_create_prompt_product_name">Product name</string>
+    <string name="product_lbl_create_product_type">Product type</string>
+    <string name="product_create_radio_food">Food</string>
+    <string name="product_create_radio_drink">Drink</string>
+    <string name="product_btn_add">ADD</string>
 </resources>

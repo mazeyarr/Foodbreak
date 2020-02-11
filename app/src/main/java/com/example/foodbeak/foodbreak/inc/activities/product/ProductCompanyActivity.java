@@ -19,6 +19,7 @@ import com.example.foodbeak.foodbreak.inc.entities.Route;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.types.ProductType;
 import com.example.foodbeak.foodbreak.inc.viewmodels.ProductsViewModel;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -27,10 +28,12 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
 
     ProductsViewModel mProductsViewModel;
 
+    private MaterialButton btnAddNewDrinkProduct;
     private RecyclerView mFoodRecyclerView;
     private RecyclerView.Adapter mFoodListAdapter;
     private RecyclerView.LayoutManager mFoodListLayoutManager;
 
+    private MaterialButton btnAddNewFoodProduct;
     private RecyclerView mDrinkRecyclerView;
     private RecyclerView.Adapter mDrinkListAdapter;
     private RecyclerView.LayoutManager mDrinkListLayoutManager;
@@ -63,6 +66,9 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     public void initUIFields() {
         initFoodProducts();
         initDrinkProducts();
+
+        btnAddNewDrinkProduct = findViewById(R.id.btnAddNewDrinkProduct);
+        btnAddNewFoodProduct = findViewById(R.id.btnAddNewFoodProduct);
     }
 
     public void initFoodProducts() {
@@ -101,7 +107,13 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
 
     @Override
     public void initListeners() {
-        
+        this.btnAddNewDrinkProduct.setOnClickListener(
+                v -> ProductCreateCompanyActivity.getRoute(this)
+        );
+
+        this.btnAddNewFoodProduct.setOnClickListener(
+                v -> ProductCreateCompanyActivity.getRoute(this)
+        );
     }
 
     @Override

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
+    tools:context=".activities.product.ProductCreateCompanyActivity">
+
+    <TextView
+        android:id="@+id/lblCreateProductTitle"
+        android:layout_width="294dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/product_lbl_create"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etLayoutProductName"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/product_create_prompt_product_name"
+        android:imeOptions="actionSend"
+        android:inputType="textPassword"
+        android:labelFor="@+id/etProductName"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/textPrimary"
+        android:theme="@style/TextLabel"
+        app:layout_constraintEnd_toEndOf="@+id/lblCreateProductTitle"
+        app:layout_constraintStart_toStartOf="@+id/lblCreateProductTitle"
+        app:layout_constraintTop_toBottomOf="@+id/lblCreateProductTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etProductName"
+            style="@style/editTextDefaults"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/textPrimary" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/lblProductType"
+        android:layout_width="349dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserrat"
+        android:includeFontPadding="false"
+        android:text="@string/product_lbl_create_product_type"
+        android:textAlignment="textStart"
+        android:textColor="@color/titleText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/etLayoutProductName"
+        app:layout_constraintStart_toStartOf="@+id/etLayoutProductName"
+        app:layout_constraintTop_toBottomOf="@+id/etLayoutProductName" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:checkedButton="@id/rdBtnFood"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/etLayoutProductName"
+        app:layout_constraintStart_toStartOf="@+id/etLayoutProductName"
+        app:layout_constraintTop_toBottomOf="@+id/lblProductType">
+
+        <RadioButton
+            android:id="@+id/rdBtnFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/product_create_radio_food" />
+
+        <RadioButton
+            android:id="@+id/rdBtnDrink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/product_create_radio_drink" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnProductAdd"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="154dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="92dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/product_btn_add"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/footerBrand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#ffffff"
+        app:strokeColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/footerBrand"
+        android:layout_width="192dp"
+        android:layout_height="134dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/app_logo_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

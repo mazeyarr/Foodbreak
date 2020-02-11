@@ -34,7 +34,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
         android:includeFontPadding="false"
-        android:paddingLeft="5dp"
+        android:paddingStart="5dp"
         android:text="@string/product_lbl_food_menu"
         android:textColor="@color/titleText"
         android:textSize="18sp"
@@ -43,6 +43,28 @@
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblFoodTitle" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddNewFoodProduct"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="48dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/product_btn_add"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/lblFoodMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toEndOf="@+id/lblFoodMenu"
+        app:layout_constraintTop_toTopOf="@+id/lblFoodMenu"
+        app:rippleColor="#ffffff"
+        app:strokeColor="#ffffff" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvProductFoodList"
@@ -75,6 +97,27 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/lblFoodMenu"
         app:layout_constraintTop_toBottomOf="@+id/rcvProductFoodList" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddNewDrinkProduct"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/product_btn_add"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/lblDrinkMenu"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddNewFoodProduct"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toEndOf="@+id/lblDrinkMenu"
+        app:layout_constraintTop_toTopOf="@+id/lblDrinkMenu"
+        app:layout_constraintVertical_bias="0.608"
+        app:rippleColor="#ffffff"
+        app:strokeColor="#ffffff" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvProductDrinkList"
