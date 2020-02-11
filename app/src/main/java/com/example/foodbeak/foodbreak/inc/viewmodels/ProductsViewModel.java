@@ -41,12 +41,16 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
         mProducts.setValue(new ArrayList<>());
     }
 
-    public LiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
-        return mProductCompanyRepo.getCompanyProducts();
+    public void createCompanyProduct(Product product) {
+        mProductCompanyRepo.createCompanyProduct(product);
     }
 
     public void updateCompanyProduct(Product product) {
         mProductCompanyRepo.updateCompanyProduct(product);
+    }
+
+    public LiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
+        return mProductCompanyRepo.getCompanyProducts();
     }
 
     @Override

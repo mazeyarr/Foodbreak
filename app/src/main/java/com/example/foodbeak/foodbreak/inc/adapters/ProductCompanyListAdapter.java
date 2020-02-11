@@ -47,7 +47,7 @@ public class ProductCompanyListAdapter extends RecyclerView.Adapter<ProductCompa
         Product product = mProducts.get(position);
 
         holder.mProductTitle.setText(product.getName());
-        holder.mItemAmount.setText(product.getAmount().toString());
+        holder.mItemAmount.setText("#" + product.getAmount().toString());
 
         holder.mBtnAddProductToStorage.setOnClickListener(v -> {
             product.setAmount(product.getAmount() + 1);

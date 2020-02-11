@@ -43,5 +43,8 @@
     <string name="product_lbl_create_product_type">Product type</string>
     <string name="product_create_radio_food">Food</string>
     <string name="product_create_radio_drink">Drink</string>
+    <string name="product_create_amount">Product amount</string>
+    <string name="product_create_price">Product price</string>
     <string name="product_btn_add">ADD</string>
+    <string name="image_btn_back">Back</string>
 </resources>

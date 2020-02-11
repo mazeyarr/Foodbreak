@@ -138,6 +138,15 @@ public class ProductCompanyRepository extends CoreRepository {
         return mProducts;
     }
 
+    public void createCompanyProduct(Product product) {
+        CollectionReference companyProductsRef = FirebaseFirestore.getInstance()
+                .collection("products")
+                .document(product.getProvidedBy().getEmail())
+                .collection(product.getProductType().toString());
+
+        companyProductsRef.add(product);
+    }
+
     public void updateCompanyProduct(Product product) {
         CollectionReference companyProductsRef = FirebaseFirestore.getInstance()
                 .collection("products")

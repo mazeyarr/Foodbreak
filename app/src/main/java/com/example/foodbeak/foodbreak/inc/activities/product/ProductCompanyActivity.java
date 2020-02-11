@@ -107,13 +107,14 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
 
     @Override
     public void initListeners() {
-        this.btnAddNewDrinkProduct.setOnClickListener(
-                v -> ProductCreateCompanyActivity.getRoute(this)
-        );
+        this.btnAddNewDrinkProduct.setOnClickListener(v -> goToCreateProduct());
 
-        this.btnAddNewFoodProduct.setOnClickListener(
-                v -> ProductCreateCompanyActivity.getRoute(this)
-        );
+        this.btnAddNewFoodProduct.setOnClickListener(v -> goToCreateProduct());
+    }
+
+    public void goToCreateProduct() {
+        Router.getInstance().goTo(ProductCreateCompanyActivity.getRoute(this));
+        finish();
     }
 
     @Override
