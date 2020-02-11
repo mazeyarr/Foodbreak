@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,15 +29,17 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
 
     ProductsViewModel mProductsViewModel;
 
-    private MaterialButton btnAddNewDrinkProduct;
+    private MaterialButton mBtnAddNewDrinkProduct;
     private RecyclerView mFoodRecyclerView;
     private RecyclerView.Adapter mFoodListAdapter;
     private RecyclerView.LayoutManager mFoodListLayoutManager;
 
-    private MaterialButton btnAddNewFoodProduct;
+    private MaterialButton mBtnAddNewFoodProduct;
     private RecyclerView mDrinkRecyclerView;
     private RecyclerView.Adapter mDrinkListAdapter;
     private RecyclerView.LayoutManager mDrinkListLayoutManager;
+
+    private ConstraintLayout mCslGoOrders;
 
     Company company;
 
@@ -67,8 +70,10 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
         initFoodProducts();
         initDrinkProducts();
 
-        btnAddNewDrinkProduct = findViewById(R.id.btnAddNewDrinkProduct);
-        btnAddNewFoodProduct = findViewById(R.id.btnAddNewFoodProduct);
+        mBtnAddNewDrinkProduct = findViewById(R.id.btnAddNewDrinkProduct);
+        mBtnAddNewFoodProduct = findViewById(R.id.btnAddNewFoodProduct);
+
+        mCslGoOrders = findViewById(R.id.cslGoOrders);
     }
 
     public void initFoodProducts() {
@@ -107,9 +112,13 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
 
     @Override
     public void initListeners() {
-        this.btnAddNewDrinkProduct.setOnClickListener(v -> goToCreateProduct());
+        this.mBtnAddNewDrinkProduct.setOnClickListener(v -> goToCreateProduct());
 
-        this.btnAddNewFoodProduct.setOnClickListener(v -> goToCreateProduct());
+        this.mBtnAddNewFoodProduct.setOnClickListener(v -> goToCreateProduct());
+
+        mCslGoOrders.setOnClickListener(v -> Router.getInstance().goTo(
+                ProductOrdersCompanyActivity.getRoute(this)
+        ));
     }
 
     public void goToCreateProduct() {

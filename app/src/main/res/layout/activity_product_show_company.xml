@@ -146,4 +146,42 @@
         app:layout_constraintVertical_bias="0.493"
         app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cslGoOrders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/footerBrand"
+        app:layout_constraintEnd_toEndOf="@+id/rcvProductDrinkList"
+        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintStart_toEndOf="@+id/footerBrand"
+        app:layout_constraintTop_toTopOf="@+id/footerBrand"
+        app:layout_constraintVertical_bias="0.411">
+
+        <TextView
+            android:id="@+id/lblFoodMenu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:includeFontPadding="false"
+            android:paddingStart="5dp"
+            android:text="@string/product_btn_go_to_orders"
+            android:textColor="@color/titleText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblFoodMenu2"
+            app:layout_constraintStart_toEndOf="@+id/lblFoodMenu2"
+            app:layout_constraintTop_toTopOf="@+id/lblFoodMenu2"
+            app:srcCompat="@drawable/baseline_chevron_right_white_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
