@@ -4,9 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.foodbeak.foodbreak.inc.entities.Company;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
 import com.example.foodbeak.foodbreak.inc.repositories.ProductCompanyRepository;
 import com.example.foodbeak.foodbreak.inc.types.MyViewModel;
@@ -41,8 +41,12 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
         mProducts.setValue(new ArrayList<>());
     }
 
-    public MutableLiveData<HashMap<ProductType, ArrayList<Product>>> getProducts(Company company) {
-        return mProductCompanyRepo.getProducts(company);
+    public LiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
+        return mProductCompanyRepo.getCompanyProducts();
+    }
+
+    public void updateCompanyProduct(Product product) {
+        mProductCompanyRepo.updateCompanyProduct(product);
     }
 
     @Override
@@ -52,10 +56,8 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
 
     @Override
     public void init() {
-        Company testCompany = new Company("food@food.nl", "food", "ams");
-
         initDefaults();
         initProducts();
-        mProductCompanyRepo.initProducts(testCompany);
+        mProductCompanyRepo.initProducts(mProductCompanyRepo.getAuthCompany().getValue());
     }
 }

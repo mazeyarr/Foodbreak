@@ -1,19 +1,19 @@
 package com.example.foodbeak.foodbreak.inc.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
+import com.example.foodbeak.foodbreak.inc.viewmodels.ProductsViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -22,10 +22,12 @@ public class ProductCompanyListAdapter extends RecyclerView.Adapter<ProductCompa
 
     private ArrayList<Product> mProducts;
     private Context mContext;
+    private ProductsViewModel mProductViewModel;
 
-    public ProductCompanyListAdapter(Context context, ArrayList<Product> products) {
+    public ProductCompanyListAdapter(Context context, ArrayList<Product> products, ProductsViewModel productsViewModel) {
         this.mProducts = products;
         this.mContext = context;
+        this.mProductViewModel = productsViewModel;
     }
 
     @NonNull
@@ -42,19 +44,25 @@ public class ProductCompanyListAdapter extends RecyclerView.Adapter<ProductCompa
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: called");
-
         Product product = mProducts.get(position);
 
         holder.mProductTitle.setText(product.getName());
         holder.mItemAmount.setText(product.getAmount().toString());
 
         holder.mBtnAddProductToStorage.setOnClickListener(v -> {
-            Toast.makeText(mContext, "added " + mProducts.get(position).getName() + " to storage", Toast.LENGTH_SHORT).show();
+            product.setAmount(product.getAmount() + 1);
+            mProductViewModel.updateCompanyProduct(product);
+
+            Snackbar.make(v, "added " + product.getName() + " to storage", Snackbar.LENGTH_SHORT).show();
         });
 
         holder.mBtnRemoveProductFromStorage.setOnClickListener(v -> {
-            Toast.makeText(mContext, "removed " + mProducts.get(position).getName() + " from storage", Toast.LENGTH_SHORT).show();
+            if (product.getAmount() > 0) {
+                product.setAmount(product.getAmount() - 1);
+                mProductViewModel.updateCompanyProduct(product);
+
+                Snackbar.make(v, "removed " + product.getName() + " from storage", Snackbar.LENGTH_SHORT).show();
+            }
         });
 
     }

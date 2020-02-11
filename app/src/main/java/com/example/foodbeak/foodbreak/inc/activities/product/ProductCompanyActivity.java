@@ -46,18 +46,11 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
         setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
         mProductsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
-
         mProductsViewModel.getAuthCompany().observe(this, newCompany -> company = newCompany);
 
-        initUIFields();
         initUIData();
+        initUIFields();
         initListeners();
-    }
-
-    @Override
-    public void initUIFields() {
-        initFoodProducts();
-        initDrinkProducts();
     }
 
     @Override
@@ -66,42 +59,44 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
         mProductsViewModel.mockProducts();
     }
 
+    @Override
+    public void initUIFields() {
+        initFoodProducts();
+        initDrinkProducts();
+    }
+
     public void initFoodProducts() {
-        ArrayList<Product> products = new ArrayList<>();
+        mProductsViewModel.getCompanyProducts().observe(this, productsChange -> {
+            ArrayList<Product> products = productsChange.get(ProductType.FOOD);
 
-        products.add(new Product("Friet", 2.50f, false, ProductType.FOOD, company));
-        products.add(new Product("Brood", 1.00f, false, ProductType.FOOD, company));
-        products.add(new Product("Chips", 3.00f, false, ProductType.FOOD, company));
-        products.add(new Product("Hotdog", 5.00f, false, ProductType.FOOD, company));
-        products.add(new Product("Pizza", 5.00f, false, ProductType.FOOD, company));
+            if (products.size() > 0) {
+                this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);
+                this.mFoodRecyclerView.setHasFixedSize(true);
 
-        this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);
-        this.mFoodRecyclerView.setHasFixedSize(true);
+                this.mFoodListLayoutManager = new LinearLayoutManager(this);
+                this.mFoodRecyclerView.setLayoutManager(mFoodListLayoutManager);
 
-        this.mFoodListLayoutManager = new LinearLayoutManager(this);
-        this.mFoodRecyclerView.setLayoutManager(mFoodListLayoutManager);
-
-        this.mFoodListAdapter = new ProductCompanyListAdapter(this, products);
-        mFoodRecyclerView.setAdapter(mFoodListAdapter);
+                this.mFoodListAdapter = new ProductCompanyListAdapter(this, products, mProductsViewModel);
+                mFoodRecyclerView.setAdapter(mFoodListAdapter);
+            }
+        });
     }
 
     public void initDrinkProducts() {
-        ArrayList<Product> products = new ArrayList<>();
+        mProductsViewModel.getCompanyProducts().observe(this, productsChange -> {
+            ArrayList<Product> products = productsChange.get(ProductType.DRINK);
 
-        products.add(new Product("Cola", 2.50f, false, ProductType.DRINK, company));
-        products.add(new Product("Red Bull", 1.00f, false, ProductType.DRINK, company));
-        products.add(new Product("Bullit", 3.00f, false, ProductType.DRINK, company));
-        products.add(new Product("Fanta", 5.00f, false, ProductType.DRINK, company));
-        products.add(new Product("Sprite", 5.00f, false, ProductType.DRINK, company));
+            if (products.size() > 0) {
+                this.mDrinkRecyclerView = findViewById(R.id.rcvProductDrinkList);
+                this.mDrinkRecyclerView.setHasFixedSize(true);
 
-        this.mDrinkRecyclerView = findViewById(R.id.rcvProductDrinkList);
-        this.mDrinkRecyclerView.setHasFixedSize(true);
+                this.mDrinkListLayoutManager = new LinearLayoutManager(this);
+                this.mDrinkRecyclerView.setLayoutManager(mDrinkListLayoutManager);
 
-        this.mDrinkListLayoutManager = new LinearLayoutManager(this);
-        this.mDrinkRecyclerView.setLayoutManager(mDrinkListLayoutManager);
-
-        this.mDrinkListAdapter = new ProductCompanyListAdapter(this, products);
-        mDrinkRecyclerView.setAdapter(mDrinkListAdapter);
+                this.mDrinkListAdapter = new ProductCompanyListAdapter(this, products, mProductsViewModel);
+                mDrinkRecyclerView.setAdapter(mDrinkListAdapter);
+            }
+        });
     }
 
     @Override
