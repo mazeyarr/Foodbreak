@@ -53,6 +53,12 @@ public class ProductConsumerListAdapter extends RecyclerView.Adapter<ProductCons
         holder.mProductTitle.setText(mProducts.get(position).getName());
         holder.mProductPrice.setText("€" + mProducts.get(position).getPrice().toString());
 
+        if (mProducts.get(position).getAmount() < 1) {
+            holder.mBtnAddProductToCart.setEnabled(false);
+        } else {
+            holder.mBtnAddProductToCart.setEnabled(true);
+        }
+
         holder.mBtnAddProductToCart.setOnClickListener(v -> {
             mCartViewModel.addProductToCart(mProducts.get(position));
 
