@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
     tools:context=".activities.product.ProductOrdersCompanyActivity">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/lblCreateProductTitle"
+        android:layout_width="294dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="ORDERS"
+        android:textAlignment="center"
+        android:textColor="@color/titleText"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvCompanyOrders"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblCreateProductTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
