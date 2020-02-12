@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.example.foodbeak.foodbreak.inc.entities.Product;
 import com.example.foodbeak.foodbreak.inc.entities.Route;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.types.ProductType;
+import com.example.foodbeak.foodbreak.inc.viewmodels.CartViewModel;
 import com.example.foodbeak.foodbreak.inc.viewmodels.ProductsViewModel;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
     private static final String TAG = "ProductConsumerActivity";
 
     ProductsViewModel mProductsViewModel;
+    CartViewModel mCartViewModel;
 
     private RecyclerView mFoodRecyclerView;
     private RecyclerView.Adapter mFoodListAdapter;
@@ -37,6 +40,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
     private RecyclerView.LayoutManager mDrinkListLayoutManager;
 
     private ConstraintLayout mCheckoutConstrainLayout;
+    private TextView mLblSubtotal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
         setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
         mProductsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
+        mCartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
 
         initUIData();
         initUIFields();
@@ -56,6 +61,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
     @Override
     public void initUIData() {
         mProductsViewModel.init();
+        mCartViewModel.init();
     }
 
     @Override
@@ -63,6 +69,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
         initSelectedCompanyProducts();
 
         this.mCheckoutConstrainLayout = findViewById(R.id.cslCheckout);
+        this.mLblSubtotal = findViewById(R.id.lblSubtotal);
     }
 
     public void initSelectedCompanyProducts() {
@@ -78,7 +85,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
                 this.mFoodListLayoutManager = new LinearLayoutManager(this);
                 this.mFoodRecyclerView.setLayoutManager(mFoodListLayoutManager);
 
-                this.mFoodListAdapter = new ProductConsumerListAdapter(this, foodProducts);
+                this.mFoodListAdapter = new ProductConsumerListAdapter(this, this, foodProducts, mCartViewModel);
                 mFoodRecyclerView.setAdapter(mFoodListAdapter);
 
                 // DRINKS
@@ -88,7 +95,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
                 this.mDrinkListLayoutManager = new LinearLayoutManager(this);
                 this.mDrinkRecyclerView.setLayoutManager(mDrinkListLayoutManager);
 
-                this.mDrinkListAdapter = new ProductConsumerListAdapter(this, drinkProducts);
+                this.mDrinkListAdapter = new ProductConsumerListAdapter(this,this, drinkProducts, mCartViewModel);
                 mDrinkRecyclerView.setAdapter(mDrinkListAdapter);
             });
         });
@@ -97,6 +104,16 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
     @Override
     public void initListeners() {
         initConstraintLayoutCheckoutOnClickListener();
+
+        mCartViewModel.getProductsFromCart().observe(this, products -> {
+            Float total = 0f;
+
+            for (Product product : products) {
+                total = total + product.getPrice();
+            }
+
+            mLblSubtotal.setText("€" + total);
+        });
     }
 
     public void initConstraintLayoutCheckoutOnClickListener() {

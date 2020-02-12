@@ -49,14 +49,14 @@
             app:layout_constraintTop_toTopOf="@+id/btnAddToCart" />
 
         <TextView
-            android:id="@+id/lblCartAmount"
+            android:id="@+id/lblAmountInCart"
             android:layout_width="39dp"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="#0"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/titleText"
             android:textSize="14sp"

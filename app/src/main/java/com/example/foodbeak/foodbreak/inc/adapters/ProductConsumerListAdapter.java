@@ -7,13 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
+import com.example.foodbeak.foodbreak.inc.viewmodels.CartViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -21,11 +23,15 @@ public class ProductConsumerListAdapter extends RecyclerView.Adapter<ProductCons
     private static final String TAG = "ProductConsumerListA";
 
     private ArrayList<Product> mProducts;
+    private LifecycleOwner mOwner;
     private Context mContext;
+    private CartViewModel mCartViewModel;
 
-    public ProductConsumerListAdapter(Context context, ArrayList<Product> products) {
+    public ProductConsumerListAdapter(LifecycleOwner owner, Context context, ArrayList<Product> products, CartViewModel cartViewModel) {
         this.mProducts = products;
+        this.mOwner = owner;
         this.mContext = context;
+        this.mCartViewModel = cartViewModel;
     }
 
     @NonNull
@@ -45,16 +51,33 @@ public class ProductConsumerListAdapter extends RecyclerView.Adapter<ProductCons
         Log.d(TAG, "onBindViewHolder: called");
 
         holder.mProductTitle.setText(mProducts.get(position).getName());
-        holder.mProductPrice.setText(mProducts.get(position).getPrice().toString());
+        holder.mProductPrice.setText("€" + mProducts.get(position).getPrice().toString());
 
         holder.mBtnAddProductToCart.setOnClickListener(v -> {
-            Toast.makeText(mContext, "added " + mProducts.get(position).getName() + " to cart", Toast.LENGTH_SHORT).show();
+            mCartViewModel.addProductToCart(mProducts.get(position));
+
+            Snackbar.make(v, "added " + mProducts.get(position).getName() + " to cart", Snackbar.LENGTH_SHORT).show();
         });
 
         holder.mBtnRemoveProductFromCart.setOnClickListener(v -> {
-            Toast.makeText(mContext, "removed " + mProducts.get(position).getName() + " from cart", Toast.LENGTH_SHORT).show();
+            mCartViewModel.removeProductFromCartById(mProducts.get(position).getId());
+
+            Snackbar.make(v, "removed " + mProducts.get(position).getName() + " from cart", Snackbar.LENGTH_SHORT).show();
         });
 
+        holder.mProductAmountInCart.setText("0");
+
+        mCartViewModel.getProductsFromCart().observe(mOwner, products -> {
+            int countProductInCart = 0;
+
+            for (Product product : products) {
+                if (product.getId().equals(mProducts.get(position).getId())) {
+                    countProductInCart++;
+                }
+            }
+
+            holder.mProductAmountInCart.setText(Integer.toString(countProductInCart));
+        });
     }
 
     @Override
@@ -64,7 +87,9 @@ public class ProductConsumerListAdapter extends RecyclerView.Adapter<ProductCons
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView mProductTitle;
+        TextView mProductAmountInCart;
         TextView mProductPrice;
+
         Button mBtnAddProductToCart;
         Button mBtnRemoveProductFromCart;
 
@@ -72,7 +97,9 @@ public class ProductConsumerListAdapter extends RecyclerView.Adapter<ProductCons
             super(itemView);
 
             mProductTitle = itemView.findViewById(R.id.lblProductTitle);
+            mProductAmountInCart = itemView.findViewById(R.id.lblAmountInCart);
             mProductPrice = itemView.findViewById(R.id.lblProductPrice);
+
             mBtnAddProductToCart = itemView.findViewById(R.id.btnAddToCart);
             mBtnRemoveProductFromCart = itemView.findViewById(R.id.btnRemoveFromCart);
         }
