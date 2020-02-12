@@ -1,7 +1,6 @@
 package com.example.foodbeak.foodbreak.inc.activities.product;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -117,9 +116,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
     }
 
     public void initConstraintLayoutCheckoutOnClickListener() {
-        this.mCheckoutConstrainLayout.setOnClickListener(v -> {
-            goToCheckout();
-        });
+        this.mCheckoutConstrainLayout.setOnClickListener(v -> goToCheckout());
     }
 
     @Override
@@ -131,7 +128,7 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
 
         uiCleanup();
 
-        startActivity(new Intent(this, ProductConsumerCheckoutActivity.class));
+        Router.getInstance().goTo(ProductConsumerCheckoutActivity.getRoute(this));
     }
 
     public static Route getRoute(Context context) {
