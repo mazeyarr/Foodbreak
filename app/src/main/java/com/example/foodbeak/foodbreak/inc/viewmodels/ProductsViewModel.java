@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.foodbeak.foodbreak.inc.entities.Company;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
 import com.example.foodbeak.foodbreak.inc.repositories.ProductCompanyRepository;
 import com.example.foodbeak.foodbreak.inc.types.MyViewModel;
@@ -21,6 +22,9 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
     private ProductCompanyRepository mProductCompanyRepo;
 
     private MutableLiveData<ArrayList<Product>> mProducts;
+
+    private MutableLiveData<ArrayList<Company>> mCompanies;
+    private MutableLiveData<Company> mConsumerSelectedCompany;
 
     public ProductsViewModel(@NonNull Application application) {
         super(application);
@@ -41,12 +45,37 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
         mProducts.setValue(new ArrayList<>());
     }
 
+    private void initCompanies() {
+        if (mCompanies != null) {
+            return;
+        }
+
+        mCompanies = new MutableLiveData<>();
+        mCompanies.setValue(new ArrayList<>());
+    }
+
+    private void initConsumerSelectedCompany() {
+        if (mConsumerSelectedCompany != null) {
+            return;
+        }
+
+        mConsumerSelectedCompany = new MutableLiveData<>();
+    }
+
     public void createCompanyProduct(Product product) {
         mProductCompanyRepo.createCompanyProduct(product);
     }
 
     public void updateCompanyProduct(Product product) {
         mProductCompanyRepo.updateCompanyProduct(product);
+    }
+
+    public void updateConsumerSelectedCompany(Company company) {
+        mProductCompanyRepo.updateConsumerSelectedCompany(company);
+    }
+
+    public LiveData<ArrayList<Company>> getCompanies() {
+        return mProductCompanyRepo.getCompanies();
     }
 
     public LiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
@@ -62,6 +91,9 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
     public void init() {
         initDefaults();
         initProducts();
+        initCompanies();
+        mProductCompanyRepo.initConsumerSelectedCompany();
+        mProductCompanyRepo.initCompanies();
         mProductCompanyRepo.initProducts(mProductCompanyRepo.getAuthCompany().getValue());
     }
 }

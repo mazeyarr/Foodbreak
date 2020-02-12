@@ -16,12 +16,12 @@ import com.example.foodbeak.foodbreak.inc.MainApp;
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.activities.product.ProductCompanyActivity;
-import com.example.foodbeak.foodbreak.inc.activities.product.ProductConsumerActivity;
+import com.example.foodbeak.foodbreak.inc.activities.product.ProductConsumerCompanySelectionActivity;
 import com.example.foodbeak.foodbreak.inc.activities.register.RegisterConsumerActivity;
 import com.example.foodbeak.foodbreak.inc.entities.Company;
 import com.example.foodbeak.foodbreak.inc.entities.Consumer;
-import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.entities.Route;
+import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.viewmodels.LoginViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements MyActivity, Vali
                 uiCleanup();
 
                 if (consumer != null) {
-                    goToProductConsumerShow();
+                    goToProductConsumerCompanySelectionShow();
                 } else if (company != null) {
                     goToProductCompanyShow();
                 }
@@ -193,8 +193,8 @@ public class LoginActivity extends AppCompatActivity implements MyActivity, Vali
         this.btnLogin.setEnabled(!toggle);
     }
 
-    private void goToProductConsumerShow() {
-        Router.getInstance().goTo(ProductConsumerActivity.getRoute(this));
+    private void goToProductConsumerCompanySelectionShow() {
+        Router.getInstance().goTo(ProductConsumerCompanySelectionActivity.getRoute(this));
         finish();
     }
 

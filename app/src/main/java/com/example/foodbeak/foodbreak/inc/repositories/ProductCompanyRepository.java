@@ -21,6 +21,9 @@ public class ProductCompanyRepository extends CoreRepository {
 
     private static volatile ProductCompanyRepository PRODUCT_REPOSITORY_INSTANCE;
 
+    private MutableLiveData<ArrayList<Company>> mCompanies;
+    private MutableLiveData<Company> mConsumerSelectedCompany;
+
     private MutableLiveData<HashMap<ProductType, ArrayList<Product>>> mProducts;
 
     public static ProductCompanyRepository getInstance() {
@@ -67,6 +70,10 @@ public class ProductCompanyRepository extends CoreRepository {
             return;
         }
 
+        if (company == null) {
+            return;
+        }
+
         mProducts = new MutableLiveData<>();
         HashMap<ProductType, ArrayList<Product>> products = new HashMap<>();
         products.put(ProductType.FOOD, new ArrayList<>());
@@ -84,6 +91,28 @@ public class ProductCompanyRepository extends CoreRepository {
                 .collection(ProductType.DRINK.toString());
 
         this.initProductsObservable(storeFood, storeDrinks);
+    }
+
+    public void initCompanies() {
+        if (mCompanies != null) {
+            return;
+        }
+
+        mCompanies = new MutableLiveData<>();
+        mCompanies.setValue(new ArrayList<>());
+
+        CollectionReference storeUsers = FirebaseFirestore.getInstance()
+                .collection("users");
+
+        this.initCompaniesObservable(storeUsers);
+    }
+
+    public void initConsumerSelectedCompany() {
+        if (mConsumerSelectedCompany != null) {
+            return;
+        }
+
+        this.mConsumerSelectedCompany = new MutableLiveData<>();
     }
 
     private void initProductsObservable(CollectionReference storeFood, CollectionReference storeDrinks) {
@@ -126,6 +155,24 @@ public class ProductCompanyRepository extends CoreRepository {
         });
     }
 
+    private void initCompaniesObservable(CollectionReference storeUsers) {
+        Query queryCompanies = storeUsers.whereEqualTo("company", true);
+
+        queryCompanies.addSnapshotListener((snapshots, e) -> {
+            if (snapshots != null) {
+                ArrayList<Company> newCompanies = new ArrayList<>();
+
+                for (DocumentSnapshot snapshot : snapshots) {
+                    newCompanies.add(snapshot.toObject(Company.class));
+                }
+
+                mCompanies.postValue(newCompanies);
+
+                Log.d(TAG, "initProducts: companies size = " + mCompanies.getValue().size());
+            }
+        });
+    }
+
     private HashMap<ProductType, ArrayList<Product>> removeProductTypeFromProducts(ProductType productType, HashMap<ProductType, ArrayList<Product>> products) {
         if (products != null) {
             products.remove(productType);
@@ -136,6 +183,14 @@ public class ProductCompanyRepository extends CoreRepository {
 
     public MutableLiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
         return mProducts;
+    }
+
+    public MutableLiveData<ArrayList<Company>> getCompanies() {
+        return mCompanies;
+    }
+
+    public MutableLiveData<Company> getConsumerSelectedCompany() {
+        return mConsumerSelectedCompany;
     }
 
     public void createCompanyProduct(Product product) {
@@ -167,5 +222,9 @@ public class ProductCompanyRepository extends CoreRepository {
 
                     productRef.set(product);
                 });
+    }
+
+    public void updateConsumerSelectedCompany(Company company) {
+        this.mConsumerSelectedCompany.postValue(company);
     }
 }

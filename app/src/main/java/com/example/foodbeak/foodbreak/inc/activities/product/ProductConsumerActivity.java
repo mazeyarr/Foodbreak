@@ -61,11 +61,6 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
 
     public void initFoodProducts() {
         ArrayList<Product> products = new ArrayList<>();
-//        products.add(new Product("product 1", "1.00"));
-//        products.add(new Product("product 2", "2.00"));
-//        products.add(new Product("product 3", "2.25"));
-//        products.add(new Product("product 4", "2.25"));
-//        products.add(new Product("product 5", "2.25"));
 
         this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);
         this.mFoodRecyclerView.setHasFixedSize(true);
@@ -79,12 +74,6 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
 
     public void initDrinkProducts() {
         ArrayList<Product> products = new ArrayList<>();
-
-//        products.add(new Product("Drink 1", "2.00"));
-//        products.add(new Product("Drink 2", "8.00"));
-//        products.add(new Product("Drink 3", "3.25"));
-//        products.add(new Product("Drink 4", "3.25"));
-//        products.add(new Product("Drink 5", "3.25"));
 
         this.mDrinkRecyclerView = findViewById(R.id.rcvProductDrinkList);
         this.mDrinkRecyclerView.setHasFixedSize(true);
