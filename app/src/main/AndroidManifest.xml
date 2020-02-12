@@ -28,6 +28,7 @@
         <activity android:name=".activities.product.ProductCreateCompanyActivity"></activity>
         <activity android:name=".activities.product.ProductOrdersCompanyActivity"></activity>
         <activity android:name=".activities.product.ProductConsumerCompanySelectionActivity"></activity>
+        <activity android:name=".activities.product.ProductOrderConsumerActivity"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

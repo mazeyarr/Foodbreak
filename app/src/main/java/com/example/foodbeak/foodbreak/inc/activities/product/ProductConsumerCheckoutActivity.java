@@ -15,15 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.adapters.ProductCartListAdapter;
+import com.example.foodbeak.foodbreak.inc.entities.Order;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
 import com.example.foodbeak.foodbreak.inc.entities.Route;
 import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.viewmodels.CartViewModel;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.foodbeak.foodbreak.inc.viewmodels.OrderViewModel;
+import com.example.foodbeak.foodbreak.inc.viewmodels.ProductsViewModel;
 
 public class ProductConsumerCheckoutActivity extends AppCompatActivity implements MyActivity {
     private static final String TAG = "ProductConsCheckoutA";
 
+    ProductsViewModel mProductsViewModel;
+    OrderViewModel mOrderViewModel;
     CartViewModel mCartViewModel;
 
     private RecyclerView mCartRecyclerView;
@@ -31,7 +35,7 @@ public class ProductConsumerCheckoutActivity extends AppCompatActivity implement
     private RecyclerView.LayoutManager mCartListLayoutManager;
 
     private ConstraintLayout mCslPay;
-    private TextView mLblSubtotaal;
+    private TextView mLblSubTotaal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class ProductConsumerCheckoutActivity extends AppCompatActivity implement
 
         setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
+        mProductsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
+        mOrderViewModel = ViewModelProviders.of(this).get(OrderViewModel.class);
         mCartViewModel = ViewModelProviders.of(this).get(CartViewModel.class);
 
         initUIData();
@@ -51,7 +57,7 @@ public class ProductConsumerCheckoutActivity extends AppCompatActivity implement
     @Override
     public void initUIFields() {
         mCslPay = findViewById(R.id.cslPay);
-        mLblSubtotaal = findViewById(R.id.lblSubtotal);
+        mLblSubTotaal = findViewById(R.id.lblSubtotal);
 
         mCartViewModel.getProductsFromCart().observe(this, products -> {
             this.mCartRecyclerView = findViewById(R.id.rcvCart);
@@ -69,7 +75,7 @@ public class ProductConsumerCheckoutActivity extends AppCompatActivity implement
                 total = total + product.getPrice();
             }
 
-            mLblSubtotaal.setText("€" + total);
+            mLblSubTotaal.setText("€" + total);
         });
     }
 
@@ -80,7 +86,16 @@ public class ProductConsumerCheckoutActivity extends AppCompatActivity implement
 
     @Override
     public void initListeners() {
-        mCslPay.setOnClickListener(v -> Snackbar.make(v, "payed", Snackbar.LENGTH_SHORT).show());
+        mCslPay.setOnClickListener(v -> {
+            Order order = new Order(
+                    mProductsViewModel.getSelectedCompany().getValue(),
+                    mCartViewModel.getProductsFromCart().getValue()
+            );
+
+            mOrderViewModel.updateConsumerOrder(order);
+
+            Router.getInstance().goTo(ProductOrderConsumerActivity.getRoute(this));
+        });
     }
 
     @Override
