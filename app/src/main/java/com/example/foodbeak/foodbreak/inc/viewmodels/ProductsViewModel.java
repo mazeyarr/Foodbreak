@@ -74,12 +74,20 @@ public class ProductsViewModel extends AndroidViewModel implements MyViewModel<P
         mProductCompanyRepo.updateConsumerSelectedCompany(company);
     }
 
+    public LiveData<Company> getSelectedCompany() {
+        return mProductCompanyRepo.getConsumerSelectedCompany();
+    }
+
     public LiveData<ArrayList<Company>> getCompanies() {
         return mProductCompanyRepo.getCompanies();
     }
 
     public LiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
         return mProductCompanyRepo.getCompanyProducts();
+    }
+
+    public LiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts(Company company) {
+        return mProductCompanyRepo.getCompanyProducts(company);
     }
 
     @Override

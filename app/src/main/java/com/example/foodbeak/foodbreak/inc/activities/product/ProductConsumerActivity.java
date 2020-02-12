@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,13 +16,17 @@ import com.example.foodbeak.foodbreak.inc.R;
 import com.example.foodbeak.foodbreak.inc.Router;
 import com.example.foodbeak.foodbreak.inc.adapters.ProductConsumerListAdapter;
 import com.example.foodbeak.foodbreak.inc.entities.Product;
-import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.entities.Route;
+import com.example.foodbeak.foodbreak.inc.types.MyActivity;
+import com.example.foodbeak.foodbreak.inc.types.ProductType;
+import com.example.foodbeak.foodbreak.inc.viewmodels.ProductsViewModel;
 
 import java.util.ArrayList;
 
 public class ProductConsumerActivity extends AppCompatActivity implements MyActivity {
     private static final String TAG = "ProductConsumerActivity";
+
+    ProductsViewModel mProductsViewModel;
 
     private RecyclerView mFoodRecyclerView;
     private RecyclerView.Adapter mFoodListAdapter;
@@ -41,48 +46,52 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
 
         setContentView(Router.getInstance().getCurrentRoute().getLayout());
 
-        initUIFields();
+        mProductsViewModel = ViewModelProviders.of(this).get(ProductsViewModel.class);
+
         initUIData();
+        initUIFields();
         initListeners();
     }
 
     @Override
+    public void initUIData() {
+        mProductsViewModel.init();
+    }
+
+    @Override
     public void initUIFields() {
-        initFoodProducts();
-        initDrinkProducts();
+        initSelectedCompanyProducts();
 
         this.mCheckoutConstrainLayout = findViewById(R.id.cslCheckout);
     }
 
-    @Override
-    public void initUIData() {
+    public void initSelectedCompanyProducts() {
+        mProductsViewModel.getSelectedCompany().observe(this, selectedCompany -> {
+            mProductsViewModel.getCompanyProducts(selectedCompany).observe(this, productsChange -> {
+                ArrayList<Product> foodProducts = productsChange.get(ProductType.FOOD);
+                ArrayList<Product> drinkProducts = productsChange.get(ProductType.DRINK);
 
-    }
+                // FOOD
+                this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);
+                this.mFoodRecyclerView.setHasFixedSize(true);
 
-    public void initFoodProducts() {
-        ArrayList<Product> products = new ArrayList<>();
+                this.mFoodListLayoutManager = new LinearLayoutManager(this);
+                this.mFoodRecyclerView.setLayoutManager(mFoodListLayoutManager);
 
-        this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);
-        this.mFoodRecyclerView.setHasFixedSize(true);
+                this.mFoodListAdapter = new ProductConsumerListAdapter(this, foodProducts);
+                mFoodRecyclerView.setAdapter(mFoodListAdapter);
 
-        this.mFoodListLayoutManager = new LinearLayoutManager(this);
-        this.mFoodRecyclerView.setLayoutManager(mFoodListLayoutManager);
+                // DRINKS
+                this.mDrinkRecyclerView = findViewById(R.id.rcvProductDrinkList);
+                this.mDrinkRecyclerView.setHasFixedSize(true);
 
-        this.mFoodListAdapter = new ProductConsumerListAdapter(this, products);
-        mFoodRecyclerView.setAdapter(mFoodListAdapter);
-    }
+                this.mDrinkListLayoutManager = new LinearLayoutManager(this);
+                this.mDrinkRecyclerView.setLayoutManager(mDrinkListLayoutManager);
 
-    public void initDrinkProducts() {
-        ArrayList<Product> products = new ArrayList<>();
-
-        this.mDrinkRecyclerView = findViewById(R.id.rcvProductDrinkList);
-        this.mDrinkRecyclerView.setHasFixedSize(true);
-
-        this.mDrinkListLayoutManager = new LinearLayoutManager(this);
-        this.mDrinkRecyclerView.setLayoutManager(mDrinkListLayoutManager);
-
-        this.mDrinkListAdapter = new ProductConsumerListAdapter(this, products);
-        mDrinkRecyclerView.setAdapter(mDrinkListAdapter);
+                this.mDrinkListAdapter = new ProductConsumerListAdapter(this, drinkProducts);
+                mDrinkRecyclerView.setAdapter(mDrinkListAdapter);
+            });
+        });
     }
 
     @Override

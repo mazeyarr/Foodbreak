@@ -184,6 +184,10 @@ public class ProductCompanyRepository extends CoreRepository {
     public MutableLiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts() {
         return mProducts;
     }
+    public MutableLiveData<HashMap<ProductType, ArrayList<Product>>> getCompanyProducts(Company company) {
+        this.initProducts(company);
+        return mProducts;
+    }
 
     public MutableLiveData<ArrayList<Company>> getCompanies() {
         return mCompanies;
