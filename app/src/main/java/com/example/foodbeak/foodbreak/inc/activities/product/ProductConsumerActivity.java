@@ -73,9 +73,18 @@ public class ProductConsumerActivity extends AppCompatActivity implements MyActi
 
     public void initSelectedCompanyProducts() {
         mProductsViewModel.getSelectedCompany().observe(this, selectedCompany -> {
+            if (mProductsViewModel.getCompanyProducts(selectedCompany).hasActiveObservers()) {
+                mProductsViewModel.getCompanyProducts(selectedCompany).removeObservers(this);
+            }
+
+            Log.e(TAG, "initSelectedCompanyProducts: selected company name = " + selectedCompany.getName());
+
             mProductsViewModel.getCompanyProducts(selectedCompany).observe(this, productsChange -> {
                 ArrayList<Product> foodProducts = productsChange.get(ProductType.FOOD);
                 ArrayList<Product> drinkProducts = productsChange.get(ProductType.DRINK);
+
+                Log.e(TAG, "initSelectedCompanyProducts: food size = " + foodProducts.size());
+                Log.e(TAG, "initSelectedCompanyProducts: drink size = " + drinkProducts.size());
 
                 // FOOD
                 this.mFoodRecyclerView = findViewById(R.id.rcvProductFoodList);

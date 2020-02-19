@@ -111,7 +111,8 @@
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:rippleColor="#ffffff"
-        app:strokeColor="#ffffff" />
+        app:strokeColor="#ffffff"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"

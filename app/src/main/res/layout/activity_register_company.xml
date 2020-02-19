@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cslRegisterCompany"
         android:layout_width="match_parent"
@@ -32,20 +33,21 @@
 
         <TextView
             android:id="@+id/subtitle"
-            android:layout_width="358dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:text="Company registration."
             android:textColor="@color/titleText"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/lblFoodTitle"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblFoodTitle" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etLayoutCompanyName"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/auth_prompt_company_name"
@@ -56,6 +58,7 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
+            app:layout_constraintEnd_toEndOf="@+id/subtitle"
             app:layout_constraintStart_toStartOf="@+id/subtitle"
             app:layout_constraintTop_toBottomOf="@+id/subtitle">
 
@@ -72,7 +75,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etLayoutEmail"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="@string/auth_prompt_email"
@@ -83,6 +86,7 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
+            app:layout_constraintEnd_toEndOf="@+id/etLayoutCompanyName"
             app:layout_constraintStart_toStartOf="@+id/etLayoutCompanyName"
             app:layout_constraintTop_toBottomOf="@+id/etLayoutCompanyName">
 
@@ -99,7 +103,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etLayoutLocation"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="@string/auth_prompt_location"
@@ -110,6 +114,7 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
+            app:layout_constraintEnd_toEndOf="@+id/etLayoutEmail"
             app:layout_constraintStart_toStartOf="@+id/etLayoutEmail"
             app:layout_constraintTop_toBottomOf="@+id/etLayoutEmail">
 
@@ -126,7 +131,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etLayoutPassword"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="@string/auth_prompt_password"
@@ -137,6 +142,7 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
+            app:layout_constraintEnd_toEndOf="@+id/etLayoutLocation"
             app:layout_constraintStart_toStartOf="@+id/etLayoutLocation"
             app:layout_constraintTop_toBottomOf="@+id/etLayoutLocation">
 
@@ -153,7 +159,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etLayoutPasswordConfirm"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="@string/auth_prompt_password_confirm"
@@ -164,6 +170,7 @@
             android:textAlignment="textStart"
             android:textColorHint="@color/textPrimary"
             android:theme="@style/TextLabel"
+            app:layout_constraintEnd_toEndOf="@+id/etLayoutPassword"
             app:layout_constraintStart_toStartOf="@+id/etLayoutPassword"
             app:layout_constraintTop_toBottomOf="@+id/etLayoutPassword">
 
@@ -182,45 +189,43 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCompanyRegister"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="153dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/auth_btn_register_consumer"
             android:textColor="#ffffff"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/btnRegister"
-            app:layout_constraintEnd_toStartOf="@+id/btnRegister"
-            app:layout_constraintHorizontal_bias="0.014"
+            app:layout_constraintEnd_toStartOf="@+id/iconCheck"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/etLayoutPasswordConfirm"
-            app:layout_constraintTop_toTopOf="@+id/btnRegister"
+            app:layout_constraintTop_toBottomOf="@+id/etLayoutPasswordConfirm"
+            app:layout_constraintVertical_bias="0.0"
             app:rippleColor="#ffffff"
             app:strokeColor="#ffffff" />
 
         <ProgressBar
             android:id="@+id/spnRegisterLoader"
             style="?android:attr/progressBarStyle"
-            android:layout_width="38dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="5dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorLogoText"
             android:indeterminateTintMode="src_in"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/btnCompanyRegister"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRegister"
             app:layout_constraintEnd_toStartOf="@+id/btnRegister"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.567"
             app:layout_constraintStart_toEndOf="@+id/btnCompanyRegister"
             app:layout_constraintTop_toTopOf="@+id/btnRegister"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.82" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="154dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/auth_btn_register"
             android:textColor="#ffffff"
@@ -236,13 +241,13 @@
             android:layout_width="64dp"
             android:layout_height="52dp"
             android:layout_weight="1"
-            android:visibility="gone"
             android:contentDescription="@string/app_operation_successful"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etLayoutPasswordConfirm"
+            app:layout_constraintTop_toTopOf="@+id/btnRegister"
             app:srcCompat="@drawable/outline_check_circle_outline_white_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

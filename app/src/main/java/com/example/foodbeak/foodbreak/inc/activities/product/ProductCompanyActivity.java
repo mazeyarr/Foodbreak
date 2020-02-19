@@ -21,6 +21,7 @@ import com.example.foodbeak.foodbreak.inc.types.MyActivity;
 import com.example.foodbeak.foodbreak.inc.types.ProductType;
 import com.example.foodbeak.foodbreak.inc.viewmodels.ProductsViewModel;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,8 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     private static final String TAG = "ProductCompanyActivity";
 
     ProductsViewModel mProductsViewModel;
+
+    private ConstraintLayout cslCompanyProducts;
 
     private MaterialButton mBtnAddNewDrinkProduct;
     private RecyclerView mFoodRecyclerView;
@@ -67,8 +70,14 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
 
     @Override
     public void initUIFields() {
-        initFoodProducts();
-        initDrinkProducts();
+        cslCompanyProducts = findViewById(R.id.cslCompanyProducts);
+        
+        try {
+            initFoodProducts();
+            initDrinkProducts();
+        } catch (Exception e) {
+            Snackbar.make(cslCompanyProducts, "Please add some products", Snackbar.LENGTH_LONG);
+        }
 
         mBtnAddNewDrinkProduct = findViewById(R.id.btnAddNewDrinkProduct);
         mBtnAddNewFoodProduct = findViewById(R.id.btnAddNewFoodProduct);
@@ -77,7 +86,8 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     }
 
     public void initFoodProducts() {
-        mProductsViewModel.getCompanyProducts().observe(this, productsChange -> {
+        mProductsViewModel
+                .getCompanyProducts(mProductsViewModel.getAuthCompany().getValue()).observe(this, productsChange -> {
             ArrayList<Product> products = productsChange.get(ProductType.FOOD);
 
             if (products.size() > 0) {
@@ -94,7 +104,7 @@ public class ProductCompanyActivity extends AppCompatActivity implements MyActiv
     }
 
     public void initDrinkProducts() {
-        mProductsViewModel.getCompanyProducts().observe(this, productsChange -> {
+        mProductsViewModel.getCompanyProducts(mProductsViewModel.getAuthCompany().getValue()).observe(this, productsChange -> {
             ArrayList<Product> products = productsChange.get(ProductType.DRINK);
 
             if (products.size() > 0) {

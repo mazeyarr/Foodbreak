@@ -70,9 +70,12 @@ public class ProductCompanyRepository extends CoreRepository {
             return;
         }
 
+
         if (company == null) {
             return;
         }
+
+        Log.e(TAG, "initProducts: init products for : " + company.getEmail());
 
         mProducts = new MutableLiveData<>();
         HashMap<ProductType, ArrayList<Product>> products = new HashMap<>();
@@ -89,6 +92,8 @@ public class ProductCompanyRepository extends CoreRepository {
                 .collection("products")
                 .document(company.getEmail())
                 .collection(ProductType.DRINK.toString());
+
+        Log.e(TAG, "initProducts: start product observable");
 
         this.initProductsObservable(storeFood, storeDrinks);
     }
@@ -131,7 +136,7 @@ public class ProductCompanyRepository extends CoreRepository {
                 products.put(ProductType.FOOD, foodProducts);
                 mProducts.postValue(products);
 
-                Log.d(TAG, "initProducts: food size = " + mProducts.getValue().get(ProductType.FOOD).size());
+                Log.e(TAG, "initProductsObservable: food size = " + mProducts.getValue().get(ProductType.FOOD).size());
             }
         });
 
@@ -150,12 +155,13 @@ public class ProductCompanyRepository extends CoreRepository {
                 products.put(ProductType.DRINK, drinkProducts);
                 mProducts.postValue(products);
 
-                Log.d(TAG, "initProducts: drink size = " + mProducts.getValue().get(ProductType.DRINK).size());
+                Log.e(TAG, "initProductsObservable: drink size = " + mProducts.getValue().get(ProductType.DRINK).size());
             }
         });
     }
 
     private void initCompaniesObservable(CollectionReference storeUsers) {
+        mCompanies.setValue(new ArrayList<>());
         Query queryCompanies = storeUsers.whereEqualTo("company", true);
 
         queryCompanies.addSnapshotListener((snapshots, e) -> {
@@ -168,7 +174,7 @@ public class ProductCompanyRepository extends CoreRepository {
 
                 mCompanies.postValue(newCompanies);
 
-                Log.d(TAG, "initProducts: companies size = " + mCompanies.getValue().size());
+                Log.e(TAG, "initCompaniesObservable: companies size = " + mCompanies.getValue().size());
             }
         });
     }

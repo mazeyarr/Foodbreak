@@ -7,6 +7,18 @@
     android:background="@color/mainBackgroundColor"
     tools:context=".activities.product.ProductCreateCompanyActivity">
 
+    <ImageView
+        android:id="@+id/imgBtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:contentDescription="@string/image_btn_back"
+        app:layout_constraintBottom_toBottomOf="@+id/lblCreateProductTitle"
+        app:layout_constraintEnd_toStartOf="@+id/lblCreateProductTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblCreateProductTitle"
+        app:srcCompat="@drawable/baseline_keyboard_arrow_left_white_36" />
+
     <TextView
         android:id="@+id/lblCreateProductTitle"
         android:layout_width="294dp"
@@ -28,19 +40,21 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLayoutProductName"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/product_create_prompt_product_name"
         android:imeOptions="actionSend"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:labelFor="@+id/etProductName"
         android:maxLines="1"
         android:textAlignment="textStart"
         android:textColorHint="@color/textPrimary"
         android:theme="@style/TextLabel"
-        app:layout_constraintEnd_toEndOf="@+id/lblCreateProductTitle"
-        app:layout_constraintStart_toStartOf="@+id/lblCreateProductTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblCreateProductTitle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +62,7 @@
             style="@style/editTextDefaults"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:imeOptions="actionSend"
+            android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/textPrimary" />
@@ -57,7 +71,7 @@
 
     <TextView
         android:id="@+id/lblProductType"
-        android:layout_width="349dp"
+        android:layout_width="0dp"
         android:layout_height="27dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat"
@@ -72,15 +86,15 @@
         app:layout_constraintTop_toBottomOf="@+id/etLayoutProductName" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/rdGroupProductType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:checkedButton="@id/rdBtnFood"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/etLayoutProductName"
-        app:layout_constraintStart_toStartOf="@+id/etLayoutProductName"
+        app:layout_constraintEnd_toEndOf="@+id/lblProductType"
+        app:layout_constraintStart_toStartOf="@+id/lblProductType"
         app:layout_constraintTop_toBottomOf="@+id/lblProductType">
 
         <RadioButton
@@ -98,33 +112,78 @@
             android:text="@string/product_create_radio_drink" />
     </RadioGroup>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etLayoutProductAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/product_create_amount"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:labelFor="@+id/etProductAmount"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/textPrimary"
+        android:theme="@style/TextLabel"
+        app:layout_constraintEnd_toEndOf="@+id/rdGroupProductType"
+        app:layout_constraintStart_toStartOf="@+id/rdGroupProductType"
+        app:layout_constraintTop_toBottomOf="@+id/rdGroupProductType">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etProductAmount"
+            style="@style/editTextDefaults"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/textPrimary" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etLayoutProductPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/product_create_price"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:labelFor="@+id/etProductPrice"
+        android:maxLines="1"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/textPrimary"
+        android:theme="@style/TextLabel"
+        app:layout_constraintEnd_toEndOf="@+id/etLayoutProductAmount"
+        app:layout_constraintStart_toStartOf="@+id/etLayoutProductAmount"
+        app:layout_constraintTop_toBottomOf="@+id/etLayoutProductAmount">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etProductPrice"
+            style="@style/editTextDefaults"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:imeOptions="actionSend"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:textColor="@color/textPrimary" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnProductAdd"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="154dp"
+        android:layout_width="0dp"
         android:layout_height="76dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/product_btn_add"
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/footerBrand"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etLayoutProductPrice"
+        app:layout_constraintStart_toStartOf="@+id/etLayoutProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/etLayoutProductPrice"
         app:rippleColor="#ffffff"
         app:strokeColor="#ffffff" />
-
-    <ImageView
-        android:id="@+id/footerBrand"
-        android:layout_width="192dp"
-        android:layout_height="134dp"
-        android:layout_marginBottom="32dp"
-        android:contentDescription="@string/app_logo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/foodbreak_logo_trans_bg_white_letters" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

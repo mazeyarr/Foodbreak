@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackgroundColor"
-    tools:context=".activities.product.ProductCompanyActivity">
+    tools:context=".activities.product.ProductCompanyActivity"
+    android:id="@+id/cslCompanyProducts">
 
     <TextView
         android:id="@+id/lblFoodTitle"

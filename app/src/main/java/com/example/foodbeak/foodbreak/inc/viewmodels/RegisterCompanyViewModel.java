@@ -10,6 +10,7 @@ import com.example.foodbeak.foodbreak.inc.entities.Company;
 import com.example.foodbeak.foodbreak.inc.repositories.RegisterCompanyRepository;
 import com.example.foodbeak.foodbreak.inc.types.MyViewModel;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterCompanyViewModel extends AndroidViewModel implements MyViewModel<RegisterCompanyRepository> {
@@ -48,14 +49,20 @@ public class RegisterCompanyViewModel extends AndroidViewModel implements MyView
                         mRegisterCompanyRepo.addError(fail.getMessage());
                     })
                     .addOnSuccessListener(signUp -> signUp.getUser().updateProfile(changeProfileRequest))
-                    .addOnSuccessListener(signUp -> FirebaseFirestore.getInstance()
-                            .collection("users")
-                            .document(signUp.getUser().getUid())
-                            .set(getCompanyRegistration().getValue())
-                            .addOnCompleteListener(task -> mRegisterCompanyRepo.updateIsUpdating(false))
-                            .addOnSuccessListener(saveUserTask -> mRegisterCompanyRepo.updateIsComplete(true))
-                            .addOnFailureListener(fail -> mRegisterCompanyRepo.addError(fail.getMessage()))
-                    );
+                    .addOnSuccessListener(signUp -> {
+                        DocumentReference userRef = FirebaseFirestore.getInstance()
+                                .collection("users")
+                                .document(signUp.getUser().getUid());
+
+                        userRef.set(getCompanyRegistration().getValue())
+                                .addOnCompleteListener(task -> mRegisterCompanyRepo.updateIsUpdating(false))
+                                .addOnSuccessListener(saveUserTask -> userRef.get()
+                                        .addOnSuccessListener(companySnapshot -> {
+                                            mRegisterCompanyRepo.updateAuthCompany(companySnapshot.toObject(Company.class));
+                                            mRegisterCompanyRepo.updateIsComplete(true);
+                                        }))
+                                .addOnFailureListener(fail -> mRegisterCompanyRepo.addError(fail.getMessage()));
+                    });
         } catch (NullPointerException e) {
             mRegisterCompanyRepo.addError(e.getLocalizedMessage());
             mRegisterCompanyRepo.updateIsComplete(false);

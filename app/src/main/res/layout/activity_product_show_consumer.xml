@@ -31,7 +31,7 @@
         android:layout_width="100dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:includeFontPadding="false"
         android:paddingLeft="5dp"
@@ -39,8 +39,6 @@
         android:textColor="@color/titleText"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblFoodTitle" />
 
@@ -48,13 +46,14 @@
         android:id="@+id/rcvProductFoodList"
         android:layout_width="0dp"
         android:layout_height="191dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingLeft="5dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/lblFoodMenu"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblFoodMenu">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -63,7 +62,7 @@
         android:id="@+id/lblDrinkMenu"
         android:layout_width="100dp"
         android:layout_height="25dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:includeFontPadding="false"
         android:paddingLeft="5dp"
@@ -71,22 +70,21 @@
         android:textColor="@color/titleText"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/lblFoodMenu"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/lblFoodMenu"
+        app:layout_constraintStart_toStartOf="@+id/rcvProductDrinkList"
         app:layout_constraintTop_toBottomOf="@+id/rcvProductFoodList" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvProductDrinkList"
         android:layout_width="0dp"
         android:layout_height="191dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingLeft="5dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/lblDrinkMenu"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblDrinkMenu">
 
     </androidx.recyclerview.widget.RecyclerView>
