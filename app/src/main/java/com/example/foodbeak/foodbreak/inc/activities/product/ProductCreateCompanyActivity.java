@@ -113,30 +113,28 @@ public class ProductCreateCompanyActivity extends AppCompatActivity implements M
     public void addProductToCompany(View v) {
         validator.validate();
 
-        validator.setViewValidatedAction(action -> {
-            if (this.validated) {
-                String productName = this.etProductName.getText().toString();
-                ProductType productType = getSelectedProductType();
-                Integer productAmount = Integer.parseInt(this.etProductAmount.getText().toString());
+        if (this.validated && !mProductsViewModel.isUpdating().getValue()) {
+            String productName = this.etProductName.getText().toString();
+            ProductType productType = getSelectedProductType();
+            Integer productAmount = Integer.parseInt(this.etProductAmount.getText().toString());
 
-                Float productPrice = Float.parseFloat(this.etProductPrice.getText().toString());
-                productPrice = Float.parseFloat(df.format(productPrice));
+            Float productPrice = Float.parseFloat(this.etProductPrice.getText().toString());
+            productPrice = Float.parseFloat(df.format(productPrice));
 
-                Product newProduct = new Product(
-                        productName,
-                        productPrice,
-                        productAmount,
-                        false,
-                        productType,
-                        mProductsViewModel.getAuthCompany().getValue()
-                );
+            Product newProduct = new Product(
+                    productName,
+                    productPrice,
+                    productAmount,
+                    false,
+                    productType,
+                    mProductsViewModel.getAuthCompany().getValue()
+            );
 
-                mProductsViewModel.createCompanyProduct(newProduct);
+            mProductsViewModel.createCompanyProduct(newProduct);
 
-                Router.getInstance().goTo(ProductCompanyActivity.getRoute(this));
-                finish();
-            }
-        });
+            Router.getInstance().goTo(ProductCompanyActivity.getRoute(this));
+            finish();
+        }
     }
 
     public void goBack() {

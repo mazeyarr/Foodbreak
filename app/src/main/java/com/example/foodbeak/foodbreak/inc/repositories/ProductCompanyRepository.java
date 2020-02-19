@@ -204,12 +204,16 @@ public class ProductCompanyRepository extends CoreRepository {
     }
 
     public void createCompanyProduct(Product product) {
+        this.getIsUpdating().postValue(true);
+
         CollectionReference companyProductsRef = FirebaseFirestore.getInstance()
                 .collection("products")
                 .document(product.getProvidedBy().getEmail())
                 .collection(product.getProductType().toString());
 
-        companyProductsRef.add(product);
+        companyProductsRef
+                .add(product)
+                .addOnCompleteListener(task -> this.getIsUpdating().postValue(false));
     }
 
     public void updateCompanyProduct(Product product) {
